@@ -13,4 +13,14 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+<dependencies>
+     <dependency>
+    <groupId>javax.websocket</groupId>
+    <artifactId>javax.websocket-api</artifactId>
+    <version>1.1</version> <!-- Or the desired version -->
+    <scope>provided</scope> <!-- For server-side applications in a Java EE container -->
+</dependency>
+</dependencies>
+   
+
 </project>
