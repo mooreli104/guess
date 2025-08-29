@@ -1,0 +1,68 @@
+Day 1
+
+Goal: 
+Create a playable multiplayer web game with pure java in the backend. 
+Learn what problems a framework like Spring solves.
+
+The Java API for WebSocket consists of the following packages.
+
+The javax.websocket.server package contains annotations, classes, and interfaces to create and configure server endpoints.
+
+The javax.websocket package contains annotations, classes, interfaces, and exceptions that are common to client and server endpoints.
+
+The process for creating and deploying a WebSocket endpoint follows.
+
+1. Create an endpoint class.
+
+2. Implement the lifecycle methods of the endpoint.
+
+3. Add your business logic to the endpoint.
+
+4. Deploy the endpoint inside a web application.
+
+Java API for Websockets has 2 ways to create an endpoint.
+
+1. Programmatic endpoint (extend Endpoint class and override lifecycle methods)
+2. Annotated endpoint (Add annotations to a current class and its methods)
+
+Annotated endpoints are easier to use 
+
+Blocking methods pause the program until execution (sync) and non-blocking
+methods allow the program to continue with other tasks (async).
+
+Asynchronous programming is basically executing something without having to wait for it to complete. 
+
+Map<String, Integer> hashMap = new HashMap<>();        // Hash table
+Map<String, Integer> treeMap = new TreeMap<>();        // Red-black tree  
+Map<String, Integer> concurrentMap = new ConcurrentHashMap<>(); // Thread-safe hash table
+The interface on the left just says "I can do Map operations." 
+The concrete class on the right says "Here's HOW I actually do those operations."
+
+Unrelated but AWS stuff
+
+EC2 instances are virtual machines that you can provision on AWS
+    - unmanaged service; client manages the instances; aws manages the underlying infrastructure
+
+
+Serverless - cannot access or see underlying infrastructure
+
+AWS Lambda - function as a service; serverless computing
+
+A Lambda is called when a Trigger occurs which could be anything
+
+Lambda instance lasts ~15 minutes
+
+Lambda is good for quick event driven processes
+
+In cloud computing, the term “compute” describes concepts and objects related to software computation. It is a generic term used to reference processing power, memory, networking, storage, and other resources required for the computational success of any program. 
+
+How Lambda works
+
+1. Upload code to Lambda - Lambda Function
+2. Configure your code to be triggered by events, like AWS services, mobile apps, or HTTP requests.
+3. The Lambda runtime executes your function code using the event data passed to it. 
+4. You are charged only for the compute time consumed, down to the millisecond. The price depends on the amount of memory that you allocate to your function.
+
+Containers package code, dependencies, runtime, etc. Everything a program needs to run in a single, portable unit.
+    - This creates an isolated and consistent environment.
+    - Convenient to scale and deploy anywhere
