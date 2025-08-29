@@ -66,3 +66,6 @@ How Lambda works
 Containers package code, dependencies, runtime, etc. Everything a program needs to run in a single, portable unit.
     - This creates an isolated and consistent environment.
     - Convenient to scale and deploy anywhere
+
+
+Day 2
