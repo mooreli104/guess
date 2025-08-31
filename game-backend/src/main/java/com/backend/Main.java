@@ -21,7 +21,7 @@ public class Main {
         JakartaWebSocketServletContainerInitializer.configure(handler, null);
 
         // Add a WebSocket-initializer Servlet to register WebSocket endpoints.
-        handler.addServlet(MyServlet.class, "/*");
+        handler.addServlet(MyServlet.class, "/user");
 
         // Starting the Server will start the ServletContextHandler.
         try {
