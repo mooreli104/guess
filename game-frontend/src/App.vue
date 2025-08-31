@@ -1,6 +1,6 @@
 <script setup>
 async function getData() {
-  const url = "http://localhost:8080";
+  const url = "http://localhost:8080/user";
   try {
     const response = await fetch(url);
     if (!response.ok) {
