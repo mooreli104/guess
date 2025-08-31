@@ -136,3 +136,64 @@ This creates the Servlet Container
 
 Then add Servlet and endpoints.
 
+
+Day 4 (2 hours):
+
+The flow of Jetty web server architecture goes like this:
+
+Server --> Servlet Container --> Servlets --> Endpoints
+
+The server is just an HTTP Listener, the servlet container, or the context handler, is what manages what to do 
+with the HTTP requests the server recieves. The servlet container does this by managing which servlets handle
+each HTTP request depending on URL paths. The endpoints are the implementation details within each Servlet that
+handle the specific URL path. All the servlet container knows is the URL pattern e.g /users/* while the Servlet
+knows the full path e.g /users/John and the Servlet contains the endpoints to handle that specific URL.
+
+Currently have the Jetty server running with the servlet container, a servlet, and an endpoint configured,
+but I am getting 2 errors:
+1. Access to fetch at 'http://localhost:8080/user' from origin 'http://localhost:5173' has been blocked by CORS policy: 
+   No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+2. GET http://localhost:8080/user net::ERR_FAILED 405 (Method Not Allowed) 
+
+The first error I understand it as my web browser blocking the response from my backend because my frontend
+is running from a different origin (localhost:5173 vs localhost:8080). This blocking is because of Same Origin Policy
+that web browsers enforce.
+
+The second error I understand it as my server recieves the HTTP request but rejected the specific method
+
+Solution?
+
+I solved the 2nd error by just adding the doGet method to my servlet lol. I hadn't defined doGet so 
+my server didn't know what to do with a GET http method thus ERROR 405. 
+
+While trying to solve the 1st problem, I read into more about CORS and SOP. SOP (Same Origin Policy) is
+a security mechanism built into web browsers that prevent a web page's ability to access data from another origin.
+
+Essentially if you go to malware.com, this site could run a script to automatically make an API request
+to your-bank.com since the browser automatically includes your session and cookies information, but 
+SOP says that since your-bank.com != malware.com, the api request is refused. 
+
+CORS is a server-side permission system that tells browsers which origins are allowed to access the server's resources.
+
+
+Jakarta is a Java specification, essentially providing interfaces and abstract classes to provides contracts for
+enterprise level Java technologies. This iis an example of polymorphism, Jakarta provides the specification
+and different frameworks like Tomcat and Jetty implement these specifications. 
+
+Polymorphism - A pillar of OOP - (APIE) - is the ability of one thing to take on many forms.
+
+For instance, a Shape interface can be implemented as a Circle, Rectangle, etc. 
+
+This allows for predictable behaviors, reusable code, and adaptability.
+
+Each circle, rectangle, etc will behave as according to the defined Shape; to get the area of a circle, rectangle, etc
+can just call a Shape method, reduces code redundancy, and new shapes can be created with less boilerplate by simply
+implementing the Shape interface.
+
+Error 500 means some server side error
+
+Printing a String formatted as a JSON object is a valid json object
+
+Day summary
+- Solved cors and server issues
