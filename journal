@@ -69,3 +69,70 @@ Containers package code, dependencies, runtime, etc. Everything a program needs 
 
 
 Day 2
+
+Maven is a build tool that helps with dependency management and build automation.
+
+Maven works by using a pom.xml (Project Object MOdel) as a blueprint for a project. It specifies metdata 
+like project name, version, and dependencies, and instructions for building, testing, and packaging.
+
+Maven automatically downloads dependencies that are declared in pom.xml by first checking the
+local Maven repository, then remote repositories and stores them in the local repository. 
+
+An anynomous function is an inner class with no name. So it is a class that isnt defined with an (new) class name.
+Useful for when you only need an implementation of a function for one thing. 
+
+Each instance of the Endpoint class is associated with one connection.
+
+An embedded server is a server that runs inside a Java application rather than a standalone process.
+
+
+Day 3 (2 hours):
+
+When you write a WebSocket application using the Jakarta EE jakarta.websocket APIs, your code typically need to depend on just the Jakarta EE WebSocket APIs to compile your application. However, at runtime you need to have an implementation of the Jakarta EE WebSocket APIs in your class-path/module-path.
+
+When writing a WebSocket application with Jakarta EE APIS, your code usually only needs to depend on the 
+Jarkarta EE WebSocket APIs. However at runtime, there must be an implementation of 
+1. Jarkata EE Websocket APIs 
+2. standard Jakarta EE 11 WebSocket APIS
+
+Avaialble w/ Maven artifacts
+
+To correctly configure a WebSocket app based on the standard Jakarta EE 11 Websocket APIs there are 2 steps:
+1.  Make sure Jetty sets up an instance of jakarta.websocket.server.ServerContainer
+2.  Configure the WebSocket endpoints that implement your application logic
+
+2 ways to deploy web applications:
+1. WebAppContext
+2. ServletContextHandler
+
+When using ServletContextHandle as in this project, JakartaWebSocketServletContainerInitializer must be initalized
+to set up the ServerContainer. 
+
+A servlet is a Java object that is managed by a Servlet container and handles HTTP requests.
+
+A Servlet container is a type of web server that specifically runs Java servlets.
+
+Lambas in Java are expressions that define a single instance of single method classes
+
+The ServerContainer instance is stored as a ServletContext attribute
+
+ServletContext - allows you to define and configure a web application's context, including adding servlets, filters, and listeners, and setting context attributes and init parameters.
+
+Javax was renamed to Jakarta because Oracle gave stewardship of Java EE to the Eclipse foundation.
+
+After a Server/ServerContainer is setup in Jetty, the endpoints must be configured which can be done a few ways.
+1. standard jakarta.websocket annotations
+2. extend the jakarta.websocket.Endpoint abstract class
+3. or implement the jakarta.websocket.server.ServerApplicationConfig interface
+
+Day summary 
+
+Jetty is a Servlet container (a web server that runs Java servlets). A Servlet is a Java object managed
+by a Servlet container and handles HTTP requests.
+
+To deploy a Jetty web server -> Set up instance of Jetty server and configure endpoints.
+
+This creates the Servlet Container
+
+Then add Servlet and endpoints.
+
