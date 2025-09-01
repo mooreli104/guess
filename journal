@@ -197,3 +197,27 @@ Printing a String formatted as a JSON object is a valid json object
 
 Day summary
 - Solved cors and server issues
+
+Day 5 (4 hours)
+
+Getting a little confused on how to create an OOP oriented project with Jetty framework and
+Jakarta EE specifications.
+
+Should i create new classes that hold Jetty Server objects and deal with all the configurations through
+new classes?
+
+Getting stuck on trying to use Jackson to parse Json String to regular string.
+
+Code just doesn't work when I create an ObjectMapper object even though I have all the dependencies needed. 
+
+SO far though, I got the Homepage and the subsequent lobby views "done". 
+
+I can post the username a user enters to the server but I just can't seem to parse the json string.
+
+Somehow fixed the error by mapping to a Player entity.
+
+Day summary:
+
+Front end client can now enter a username and send that username to the server which is parsed with Jackson.
+This process also created a Player DTO.
+
