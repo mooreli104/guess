@@ -38,6 +38,7 @@ public class LobbyServlet extends HttpServlet {
             System.out.println(player.getUsername());
             Database db = new Database();
             System.out.println(db.getCatalog());
+            System.out.println(db.getCatalog());
 
         } catch (Exception e) {
             System.out.println(e);
