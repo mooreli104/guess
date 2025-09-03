@@ -221,3 +221,21 @@ Day summary:
 Front end client can now enter a username and send that username to the server which is parsed with Jackson.
 This process also created a Player DTO.
 
+Day 6 (2 hours)
+
+Today I will set up a database connection with the PostgreSQL JDBC driver.
+
+A database driver is a software component that allows applications to interact with a specific DBMS (Database Management System).
+
+TRYING TO GET DATABASE CONNECTION BUT STUPID "java.sql.SQLException: No suitable driver found for jdbc:postgresql://localhost:5432/gameDB" ERROR.
+
+WHY? I have the Maven artifact in my pom.xml. 
+
+Im pretty sure the problem was I was rerunning my Main with old pathfile instead of using VSCode run button... no way right?
+
+Yes, I was using the old Run command genereated from VS Code's run button that used an old snapshot of my .argfile while
+the new .argfile is the one that contained the new PostgreSQL JDBC driver dependency. 
+
+Day summary
+
+2 hours just to get a database connection lol. 
