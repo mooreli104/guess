@@ -4,6 +4,7 @@ import org.eclipse.jetty.ee11.servlet.ServletContextHandler;
 import org.eclipse.jetty.ee11.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
 import org.eclipse.jetty.server.Server;
 
+import com.backend.database.Database;
 import com.backend.webserver.servlets.UserServlet;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
 
         // Create a Server with a ServerConnector listening on port 8080.
         Server server = new Server(8080);
+        Database database = new Database();
 
         // Create a ServletContextHandler with the given context path.
         ServletContextHandler handler = new ServletContextHandler("/");
@@ -27,7 +29,7 @@ public class Main {
         try {
             server.start();
         } catch (Exception e) {
-            // TODO: handle exception
+            System.out.println(e);
         }
 
     }
