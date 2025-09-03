@@ -3,6 +3,7 @@ package com.backend.webserver.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.backend.database.Database;
 import com.backend.model.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,7 +23,6 @@ public class UserServlet extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         PrintWriter response = resp.getWriter();
-
     }
 
     @Override
@@ -34,6 +34,8 @@ public class UserServlet extends HttpServlet {
         try {
             Player player = objectMapper.readValue(req.getReader(), Player.class);
             System.out.println(player.getUsername());
+            Database db = new Database();
+            System.out.println(db.getCatalog());
 
         } catch (Exception e) {
             System.out.println(e);
