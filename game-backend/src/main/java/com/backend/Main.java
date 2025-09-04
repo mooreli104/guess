@@ -5,7 +5,9 @@ import org.eclipse.jetty.ee11.websocket.jakarta.server.config.JakartaWebSocketSe
 import org.eclipse.jetty.server.Server;
 
 import com.backend.database.Database;
-import com.backend.webserver.servlets.UserServlet;
+import com.backend.webserver.servlets.LobbyServlet;
+import com.backend.webserver.servlets.Servlet;
+import com.backend.webserver.servlets.WebSocketInitServlet;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +25,8 @@ public class Main {
         JakartaWebSocketServletContainerInitializer.configure(handler, null);
 
         // Add a WebSocket-initializer Servlet to register WebSocket endpoints.
-        handler.addServlet(UserServlet.class, "/user");
+        handler.addServlet(WebSocketInitServlet.class, "/ws");
+        handler.addServlet(Servlet.class, "/api");
 
         // Starting the Server will start the ServletContextHandler.
         try {
