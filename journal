@@ -257,3 +257,36 @@ dunno didn't do much today. got caught between deciding whether to use jakarta w
 it seems all the underlying networking stuff is already done by abstractions like fetch. 
 
 Did find a way to create json strings easily tho.
+
+Day 8 (~2 hours)
+
+JWT and OAuth2 
+
+JWT is a token format. JWT tokens are JSON encoded data structures containing information about issuer, subject (claims), expiration time etc. 
+
+OAuth2 solves a problem in which user wants to access the data using client software like browser-based web apps, native mobile apps or desktop apps.
+OAuth2 is an authorization protocol that MAY USE JWT as a token format, but
+
+Creating my database
+
+Lobby and User
+
+JDBC (java database connectivity)
+
+Lower level, standarized API for connecting to and executing SQL statements to a database
+
+JPA (Java Persistence API)
+Higher-level specification for Object-Relational Mapping (ORM). Implemented by frameworks like Hibernate
+
+Persistence simply means to Store Permanently.
+
+A specification defines those you should do in your implementation and it's more suggestive. 
+
+A protocol defines communication rules between two or more different systems. It defines events to drive the communication and actions taken when events received by any side.
+
+Current used Jakarta EE specifications used
+
+Websocket
+JDBC
+JPA
+Servlet
