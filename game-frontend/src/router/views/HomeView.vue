@@ -13,7 +13,7 @@ const goToLobby = () => {
 }
 
 async function sendUsername() {
-  const url = "http://localhost:8080/user";
+  const url = "http://localhost:8080/api";
   console.log(username.value)
   try {
     const response = await fetch(url, {
