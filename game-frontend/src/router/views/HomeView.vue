@@ -27,7 +27,7 @@ async function sendUsername() {
     const result = await response.json();
     console.log(result);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
   }
 }
 

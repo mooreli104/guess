@@ -6,17 +6,16 @@ import java.io.PrintWriter;
 import com.backend.database.Database;
 import com.backend.model.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class UserServlet extends HttpServlet {
+public class LobbyServlet extends HttpServlet {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     private String corsHeader = "Access-Control-Allow-Origin";
 
     @Override
@@ -24,10 +23,8 @@ public class UserServlet extends HttpServlet {
         resp.setHeader(this.corsHeader, req.getHeader("origin"));
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        String jsonString = "{\"name\":\"John Doe\"}";
-
         PrintWriter response = resp.getWriter();
-        response.println(jsonString);
+        response.println("hello");
     }
 
     @Override
@@ -37,21 +34,10 @@ public class UserServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         try {
-            ObjectNode rootNode = this.objectMapper.createObjectNode();
-            ObjectNode childNode1 = this.objectMapper.createObjectNode();
-            childNode1.put("name1", "val1");
-            childNode1.put("name2", "val2");
-            rootNode.set("obj1", childNode1);
-            String jsonString = this.objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
-
             Player player = objectMapper.readValue(req.getReader(), Player.class);
             System.out.println(player.getUsername());
             Database db = new Database();
             System.out.println(db.getCatalog());
-            PrintWriter response = resp.getWriter();
-            jsonString = "{\"name\":\"John Doe\",\"age\":30,\"isStudent\":false,\"courses\":[\"Math\",\"Science\"]}";
-
-            response.println(jsonString);
 
         } catch (Exception e) {
             System.out.println(e);

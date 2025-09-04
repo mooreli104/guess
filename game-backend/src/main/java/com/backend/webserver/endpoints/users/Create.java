@@ -11,7 +11,6 @@ public class Create {
 
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("Socket connected: " + session);
         try {
             session.getBasicRemote().sendText("HELLO");
         } catch (IOException e) {
