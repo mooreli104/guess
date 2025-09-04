@@ -239,3 +239,21 @@ the new .argfile is the one that contained the new PostgreSQL JDBC driver depend
 Day summary
 
 2 hours just to get a database connection lol. 
+
+Day 7 (2 hours)
+
+I have configured my ServletContainer to use the Jakarta Websocket specification which I think automatically
+upgrades a connection to a websocket connection. I think I should make the connection initially just 
+http1.1 or 2 or 3 (gotta learn the differences and use cases), and then, I can upgrade those connections
+to a websocket connection.
+
+And, I am using the Jakarta EE Servlet APIs and NOT the Jetty server libraries.
+
+scratch that. back to creating the websocket server instance.
+
+Day summary:
+
+dunno didn't do much today. got caught between deciding whether to use jakarta websocket or manually upgrade but
+it seems all the underlying networking stuff is already done by abstractions like fetch. 
+
+Did find a way to create json strings easily tho.
