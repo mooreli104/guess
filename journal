@@ -290,3 +290,21 @@ Websocket
 JDBC
 JPA
 Servlet
+
+Day 9
+
+A class in the domain model which directly represents a relational database table is called an entity. 
+
+Entities do business logic; but they don’t do orchestration.
+
+1. an entity may compute totals and averages, even caching them if necessary, enforce its invariants, interact with and construct other entities, and so on, and its annotations express how it maps to database tables,
+
+2. but the entity should not call the EntityManager or a Jakarta Data repository, build a criteria query, send a JMS message, start a transaction, publish events to the CDI event bus, maintain a stateful queue of events to be published later, or anything of a similar nature.
+
+The repository is a Java interface that acts as a gateway for accessing persistent data of one or more entity types.
+
+The application must provide the following when using repositories in Jakarta Data:
+
+Entity Classes and Mappings: Developers define a set of entity classes and mappings tailored to a specific data store. These entities represent the data structure and schema, offering a powerful means to interact with the underlying data.
+
+Repository Interfaces: Jakarta Data enables the creation of one or more repository interfaces, following predefined rules that include the guidelines set forth by this specification. These interfaces are the gateways to accessing and manipulating the data, offering a structured and efficient way to perform data operations.
