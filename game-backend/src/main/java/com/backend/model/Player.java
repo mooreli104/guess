@@ -2,8 +2,13 @@ package com.backend.model;
 
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Player {
     private String username;
+    @Id
     private UUID uuid;
 
     public Player() {
