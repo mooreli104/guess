@@ -5,7 +5,6 @@ import org.eclipse.jetty.ee11.websocket.jakarta.server.config.JakartaWebSocketSe
 import org.eclipse.jetty.server.Server;
 
 import com.backend.database.Database;
-import com.backend.webserver.servlets.LobbyServlet;
 import com.backend.webserver.servlets.Servlet;
 import com.backend.webserver.servlets.WebSocketInitServlet;
 
