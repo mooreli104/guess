@@ -1,5 +1,6 @@
 package com.backend.webserver.servlets;
 
+import com.backend.webserver.endpoints.lobby.CreateLobby;
 import com.backend.webserver.endpoints.users.CreateUser;
 
 import jakarta.servlet.ServletException;
@@ -20,6 +21,7 @@ public class WebSocketInitServlet extends HttpServlet {
 
             // Simple registration of your WebSocket endpoints.
             container.addEndpoint(CreateUser.class);
+            container.addEndpoint(CreateLobby.class);
 
         } catch (DeploymentException x) {
             throw new ServletException(x);
