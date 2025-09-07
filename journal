@@ -326,3 +326,14 @@ A Session
 Every instance of EntityManager has an associated persistence context. A persistence context is a set of entity instances in which for any given persistent entity identity there is a unique entity instance (Jakarta EE specification docs)
 
 Current issues: Sessionfactory is trying to create a new table when one already exists.
+
+Day 11 1 hour
+
+On each connection, database will create a lobby table with the lobbyid. Though, when I tried having the lobby model hold a set of players, the database didn't work or something. Maybe some issue with the mapping.
+
+What I have learned so far.
+
+I create a Server which holds my servlet container
+
+I configure the servlet container's handlers and add servlets to the container.
+
