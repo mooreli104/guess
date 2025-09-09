@@ -1,7 +1,7 @@
 package com.backend.webserver.servlets;
 
-import com.backend.webserver.endpoints.lobby.CreateLobby;
-import com.backend.webserver.endpoints.users.CreateUser;
+import com.backend.webserver.ws_endpoints.CreateLobby;
+import com.backend.webserver.ws_endpoints.CreateUser;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
