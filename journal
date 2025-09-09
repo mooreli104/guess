@@ -337,3 +337,16 @@ I create a Server which holds my servlet container
 
 I configure the servlet container's handlers and add servlets to the container.
 
+Day 12 2 hours
+
+An embedded object is a java object who's persistence is based off the entity it belongs to. A java object as an attribute
+
+I feel like I didn't do much today.
+
+Learned that when I want to map a Java object to another Entity I should use a foreign key (for one to many relationships) as opposed to @ElementCollection.
+
+I think explicitly writing what my next milestone is will be useful, kinda feeling through the dark right now.
+
+My Next Step:
+
+On every client join, create a new lobby and player object and persist into database w/ foreign key mapping.
