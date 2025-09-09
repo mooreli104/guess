@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import Button from 'primevue/button';
+
 
 
 const router = useRouter()
@@ -38,7 +40,7 @@ async function sendUsername() {
 
   <div class="fullscreen">
     <input type="text" v-model="username" placeholder="Enter a nickname!">
-    <button type="submit" value="Start" @click="goToLobby">Start</button>
+    <Button type="submit" value="Start" @click="goToLobby">Start</Button>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <script setup>
 
 import { useRouter } from 'vue-router'
+import Button from 'primevue/button';
 
 
 const router = useRouter() // Uses router from main.js to push Lobby page
@@ -10,12 +11,11 @@ const goToHome = () => {
   router.push('/')
 }
 
-
 </script>
 
 <template>
     <div class = "fullscreen">
-    <button @click="goToHome">HOME</button>
+    <Button @click="goToHome">HOME</Button>
     </div>
 </template>
 
