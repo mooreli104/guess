@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.backend.database.HibernateUtil;
@@ -16,6 +15,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Servlet extends HttpServlet {
 
@@ -34,12 +35,31 @@ public class Servlet extends HttpServlet {
         response.println(jsonString);
     }
 
+    public void HttpResponder(HttpServletRequest request, HttpServletResponse response, String message) {
+        response.setHeader(this.corsHeader, request.getHeader("origin"));
+        response.setContentType("application.json");
+        response.setCharacterEncoding("UTF-8");
+
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.println(message);
+
+        } catch (Exception e) {
+            Logger logger = LoggerFactory.getLogger(Servlet.class);
+            logger.error("Response error", e);
+        }
+
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setHeader(this.corsHeader, req.getHeader("origin"));
         resp.setContentType("application.json");
         resp.setCharacterEncoding("UTF-8");
+        // route
+        // route
 
+        // respond
         try {
             SessionFactory sessionFactory = HibernateUtil.getInstance();
 
