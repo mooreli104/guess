@@ -356,3 +356,16 @@ Day 13 ~1 hour
 Didnt really do much. Just reading more about hibernate and how to use the @OneToMany hibernate annotations. Also,
 reading Patterns of Enterprise Application Architecture to learn more about design patterns like using a service layer.
 Overall, not a super productive day. But, also adding daily journaling for my general daily life. :D
+
+Day 14 ~2 hours
+
+A Singleton is a design pattern that elimnates the need for global variables while allowing for a single instance of a class with global access. However, unlike global variables, a singleton cannot be overwritten.
+
+When using Hibernate for ORM, i need to first map associations between my java classes then map associations to a foreign key column.
+
+Today summary:
+
+Got database to create a lobby w the player on every connection. 
+
+This feature worked once I set the lobby in my player to the lobby i wanted it to join. Not sure how this really works yet
+need to read more Hibernate docs and ask AI.
