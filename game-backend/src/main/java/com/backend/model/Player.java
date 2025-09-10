@@ -21,8 +21,8 @@ public class Player {
     private String guess;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lobbyId", referencedColumnName = "lobbyID", foreignKey = @ForeignKey(name = "PlayersToLobby"))
-    private UUID lobbyId;
+    @JoinColumn(name = "lobbyID", referencedColumnName = "lobbyID")
+    private Lobby lobby;
 
     public Player() {
     }
@@ -64,6 +64,14 @@ public class Player {
 
     public void setGuess(String guess) {
         this.guess = guess;
+    }
+
+    public void setLobbyID(Lobby lobbyID) {
+        this.lobbyID = lobbyID;
+    }
+
+    public Lobby getLobbyID() {
+        return lobbyID;
     }
 
 }
