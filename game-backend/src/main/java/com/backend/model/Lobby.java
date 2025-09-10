@@ -1,8 +1,10 @@
 package com.backend.model;
 
+import java.util.Set;
 import java.util.UUID;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,6 +12,8 @@ import jakarta.persistence.Table;
 public class Lobby {
     @Id
     private UUID lobbyID;
+    @OneToMany(mappedBy = "lobbyId")
+    private Set<Player> players;
 
     public Lobby() {
     }
