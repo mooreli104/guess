@@ -29,10 +29,7 @@ public class Servlet extends HttpServlet {
 
     }
 
-    public void respondHttp(HttpServletRequest request, HttpServletResponse response, String message) {
-        response.setHeader(this.corsHeader, request.getHeader("origin"));
-        response.setContentType("application.json");
-        response.setCharacterEncoding("UTF-8");
+    public void respondHttp(HttpServletResponse response, String message) {
 
         try {
             PrintWriter writer = response.getWriter();
@@ -47,26 +44,24 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // route
-
-        // route
+        resp.setHeader(this.corsHeader, req.getHeader("origin"));
+        resp.setContentType("application.json");
+        resp.setCharacterEncoding("UTF-8");
 
         String jsonString = "{\"name\":\"John Doe\"}";
-        respondHttp(req, resp, jsonString);
 
         try {
-            SessionFactory sessionFactory = HibernateUtil.getInstance();
+            HibernateUtil hibernate = HibernateUtil.getInstance();
 
             Player player = objectMapper.readValue(req.getReader(), Player.class);
             player.setUUID();
 
             Lobby lobby = new Lobby(UUID.randomUUID());
+            player.setLobbyID(lobby);
+            hibernate.persist(lobby);
+            hibernate.persist(player);
 
-            sessionFactory.inTransaction(session -> {
-                session.persist(lobby);
-                session.persist(player);
-                session.flush();
-            });
+            respondHttp(resp, jsonString);
 
         } catch (Exception e) {
             System.out.println(e);
