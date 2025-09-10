@@ -1,8 +1,12 @@
 package com.backend.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -12,7 +16,8 @@ import jakarta.persistence.Table;
 public class Lobby {
     @Id
     private UUID lobbyID;
-    @OneToMany(mappedBy = "lobbyId")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lobby")
     private Set<Player> players;
 
     public Lobby() {
