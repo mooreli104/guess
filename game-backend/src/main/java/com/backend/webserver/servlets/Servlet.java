@@ -26,16 +26,10 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader(this.corsHeader, req.getHeader("origin"));
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        String jsonString = "{\"name\":\"John Doe\"}";
 
-        PrintWriter response = resp.getWriter();
-        response.println(jsonString);
     }
 
-    public void HttpResponder(HttpServletRequest request, HttpServletResponse response, String message) {
+    public void respondHttp(HttpServletRequest request, HttpServletResponse response, String message) {
         response.setHeader(this.corsHeader, request.getHeader("origin"));
         response.setContentType("application.json");
         response.setCharacterEncoding("UTF-8");
@@ -53,13 +47,13 @@ public class Servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader(this.corsHeader, req.getHeader("origin"));
-        resp.setContentType("application.json");
-        resp.setCharacterEncoding("UTF-8");
-        // route
         // route
 
-        // respond
+        // route
+
+        String jsonString = "{\"name\":\"John Doe\"}";
+        respondHttp(req, resp, jsonString);
+
         try {
             SessionFactory sessionFactory = HibernateUtil.getInstance();
 
@@ -70,12 +64,9 @@ public class Servlet extends HttpServlet {
 
             sessionFactory.inTransaction(session -> {
                 session.persist(lobby);
+                session.persist(player);
                 session.flush();
             });
-
-            PrintWriter response = resp.getWriter();
-            String jsonString = "{\"name\":\"John Doe\"}";
-            response.println(jsonString);
 
         } catch (Exception e) {
             System.out.println(e);
