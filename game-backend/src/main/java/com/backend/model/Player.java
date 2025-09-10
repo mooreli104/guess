@@ -3,6 +3,7 @@ package com.backend.model;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +20,7 @@ public class Player {
     private int score;
     private String guess;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lobbyId", referencedColumnName = "lobbyID", foreignKey = @ForeignKey(name = "PlayersToLobby"))
     private UUID lobbyId;
 
@@ -29,6 +30,8 @@ public class Player {
     public Player(String username) {
         this.username = username;
         this.uuid = UUID.randomUUID();
+        this.score = 0;
+        this.guess = null;
     }
 
     public String getUsername() {
