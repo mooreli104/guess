@@ -350,3 +350,9 @@ I think explicitly writing what my next milestone is will be useful, kinda feeli
 My Next Step:
 
 On every client join, create a new lobby and player object and persist into database w/ foreign key mapping.
+
+Day 13 ~1 hour
+
+Didnt really do much. Just reading more about hibernate and how to use the @OneToMany hibernate annotations. Also,
+reading Patterns of Enterprise Application Architecture to learn more about design patterns like using a service layer.
+Overall, not a super productive day. But, also adding daily journaling for my general daily life. :D
