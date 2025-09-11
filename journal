@@ -369,3 +369,13 @@ Got database to create a lobby w the player on every connection.
 
 This feature worked once I set the lobby in my player to the lobby i wanted it to join. Not sure how this really works yet
 need to read more Hibernate docs and ask AI.
+
+Day 15 ~ 2 hours
+
+Goals:
+
+Get lobby view from database
+
+Didn't get this goal done, but refactored code into layers. Added DAO and Service layers. 
+
+Presentation layer will talk to service layer which will reference DAOs which talk to database
