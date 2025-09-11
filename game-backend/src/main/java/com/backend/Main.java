@@ -4,8 +4,8 @@ import org.eclipse.jetty.ee11.servlet.ServletContextHandler;
 import org.eclipse.jetty.ee11.websocket.jakarta.server.config.JakartaWebSocketServletContainerInitializer;
 import org.eclipse.jetty.server.Server;
 
-import com.backend.webserver.servlets.Servlet;
-import com.backend.webserver.servlets.WebSocketInitServlet;
+import com.backend.controller.servlets.Servlet;
+import com.backend.controller.servlets.WebSocketInitServlet;
 
 public class Main {
     public static void main(String[] args) {
