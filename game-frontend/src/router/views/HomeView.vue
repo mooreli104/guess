@@ -16,12 +16,12 @@ const goToLobby = () => {
 
 async function sendUsername() {
   const url = "http://localhost:8080/api";
-  console.log(username.value)
   try {
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify({username: username.value}),
     });
+    
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
