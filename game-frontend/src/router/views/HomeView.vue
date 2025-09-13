@@ -15,7 +15,7 @@ const goToLobby = () => {
 }
 
 async function sendUsername() {
-  const url = "http://localhost:8080/api";
+  const url = "http://localhost:8080/api/connect";
   try {
     const response = await fetch(url, {
       method: "POST",
