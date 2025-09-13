@@ -410,3 +410,9 @@ Current problem. I have separated my business logic into a service layer and my 
 After some experimenting, this error only occurs when trying to persist a Lobby object. There is no issue with persisting a player object. Even when persisting the lobby object solo... I'm very confused. Is it beacause the Lobby is the one in the ManyToOne relationship?
 
 Hiberate Sessions extend EntityManager and Hibernate SessionFactory extends EntityManagerFactory
+
+Day 17 ~ 2 hours
+
+Currently dont know how to create a lobby based off the lobby id's in my database. How do i know which lobby/player each request comes from??
+
+Session Management is the answer.
