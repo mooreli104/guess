@@ -379,3 +379,34 @@ Get lobby view from database
 Didn't get this goal done, but refactored code into layers. Added DAO and Service layers. 
 
 Presentation layer will talk to service layer which will reference DAOs which talk to database
+
+As long as the Jetty server hasn't started, I can add servlets to the handler after I add the handler to the context.
+
+There's a difference between a setter method and a behavior method. Setter is about changing the object's state, behavior method is about describing what the object can do.
+
+A service layer handles business logic and separates presentation from DAOs.
+
+Remember i can use DAOs to get objects from my database
+
+Day 16 ~2 hours
+
+Getting this error jakarta.persistence.EntityExistsException: Detached entity passed to persist: com.backend.model.Lobby
+when trying to add player to a lobby. 
+
+This error means im trying to persist a detatched entity, and a detatched entity is an entity with a record in the database but not associated with an active persistence session anymore.
+
+A foreign key is another table’s primary key in table.
+
+Since player has a foreign key to lobby, they're apart of the same domain and should share a service i.e GameService
+
+service layer isnt just for simple queries, its for business logic. 
+
+Business logic are the rules that decide "what is done to data"
+
+DAOs handle all persistence and database actions
+
+Current problem. I have separated my business logic into a service layer and my database querying into a persistence layer, but now, when I'm trying to get a player to join a lobby, im getting the error "Detatched entity passed to persist". 
+
+After some experimenting, this error only occurs when trying to persist a Lobby object. There is no issue with persisting a player object. Even when persisting the lobby object solo... I'm very confused. Is it beacause the Lobby is the one in the ManyToOne relationship?
+
+Hiberate Sessions extend EntityManager and Hibernate SessionFactory extends EntityManagerFactory
