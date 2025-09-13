@@ -42,10 +42,17 @@ public class HibernateUtil {
         return hibernate;
     }
 
+    public void merge(Object e) {
+        sessionFactory.inTransaction(session -> {
+            session.merge(e);
+            session.close();
+        });
+    }
+
     public void persist(Object e) {
         sessionFactory.inTransaction(session -> {
             session.persist(e);
-            session.flush();
+            session.close();
         });
     }
 
