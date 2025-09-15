@@ -11,26 +11,15 @@ const username = ref('');
 
 const goToLobby = () => {
   router.push("/lobby")
-  sendUsername()
+  createLobby()
 }
 
-async function sendUsername() {
-  const url = "http://localhost:8080/api/connect";
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({username: username.value}),
+async function createLobby() {
+  const socket = new WebSocket("ws://localhost:8080/ws/game")
+      socket.addEventListener("open", () => {
+      socket.send(username.value);
     });
-    
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
 
-    const result = await response.json();
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
 }
 
 
