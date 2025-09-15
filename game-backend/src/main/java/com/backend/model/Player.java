@@ -2,6 +2,8 @@ package com.backend.model;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.NaturalId;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,8 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
     private String username;
+    @NaturalId
+    private String session;
     private int score;
     private String guess;
 
@@ -29,11 +33,11 @@ public class Player {
     public Player() {
     }
 
-    public Player(String username) {
+    public Player(String username, String session) {
         this.username = username;
-        this.uuid = UUID.randomUUID();
         this.score = 0;
         this.guess = null;
+        this.session = session;
     }
 
     public void guess(String guess) {
@@ -46,19 +50,29 @@ public class Player {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getGuess() {
-        return guess;
+        return this.guess;
     }
 
     public int getScore() {
-        return score;
+        return this.score;
+    }
+
+    public UUID getId() {
+        return this.uuid;
     }
 
     public void leaveLobby() {
         this.lobby = null;
+
+    }
+
+    @Override
+    public String toString() {
+        return this.username + "\n" + this.session;
     }
 
 }
