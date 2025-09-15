@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +25,7 @@ public class Lobby {
     public Lobby() {
     }
 
-    public UUID getLobbyID() {
+    public UUID getId() {
         return this.lobbyID;
     }
 
