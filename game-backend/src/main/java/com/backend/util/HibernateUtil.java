@@ -9,14 +9,16 @@ import com.backend.model.Player;
 
 public class HibernateUtil {
 
-    private static HibernateUtil hibernate;
-    private static SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = buildSessionFactory();
     private static final String USER = "moore";
     private static final String PASSWORD = "sachisroom";
 
     private HibernateUtil() {
+    }
+
+    private static SessionFactory buildSessionFactory() {
         try {
-            HibernateUtil.sessionFactory = new HibernatePersistenceConfiguration("lobby")
+            return new HibernatePersistenceConfiguration("lobby")
                     .managedClass(Lobby.class)
                     .managedClass(Player.class)
                     // PostgreSQL
@@ -35,25 +37,11 @@ public class HibernateUtil {
         }
     }
 
-    public static HibernateUtil getInstance() {
-        if (HibernateUtil.hibernate == null) {
-            hibernate = new HibernateUtil();
+    public static SessionFactory getInstance() {
+        if (HibernateUtil.sessionFactory == null) {
+            HibernateUtil.buildSessionFactory();
         }
-        return hibernate;
-    }
-
-    public void merge(Object e) {
-        sessionFactory.inTransaction(session -> {
-            session.merge(e);
-            session.close();
-        });
-    }
-
-    public void persist(Object e) {
-        sessionFactory.inTransaction(session -> {
-            session.persist(e);
-            session.close();
-        });
+        return HibernateUtil.sessionFactory;
     }
 
 }
