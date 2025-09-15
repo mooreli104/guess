@@ -3,10 +3,12 @@ package com.backend.service;
 import com.backend.model.Lobby;
 import com.backend.model.Player;
 import com.backend.persistence.LobbyDao;
-import com.backend.persistence.UserDao;
+import com.backend.persistence.PlayerDao;
 
 public class GameService {
     private static GameService game;
+    private LobbyDao lobbyDao = LobbyDao.getInstance();
+    private PlayerDao playerDao = PlayerDao.getInstance();
 
     private GameService() {
     }
@@ -19,12 +21,15 @@ public class GameService {
     }
 
     public void createLobby(Lobby lobby, Player player) {
-        LobbyDao lobbyDao = LobbyDao.getInstance();
-        UserDao playerDao = UserDao.getInstance();
-
-        lobbyDao.registerLobby(lobby);
+        this.lobbyDao.save(lobby);
         player.joinLobby(lobby);
-        playerDao.registerPlayer(player);
+        this.playerDao.save(player);
+    }
+
+    public void leaveLobby(String session) {
+        Player player = this.playerDao.findById(session);
+        player.leaveLobby();
+        this.playerDao.update();
 
     }
 }
