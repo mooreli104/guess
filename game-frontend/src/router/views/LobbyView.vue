@@ -1,15 +1,19 @@
 <script setup>
 
 import { useRouter } from 'vue-router'
+import { reactive, ref } from 'vue';
 import Button from 'primevue/button';
+import Players from "../components/Player.vue"
 
 
 const router = useRouter() // Uses router from main.js to push Lobby page
-
+const players = ref(null)
 
 const goToHome = () => {
   router.push('/')
 }
+
+
 
 
 async function getPlayers() {
@@ -24,17 +28,24 @@ async function getPlayers() {
     }
     
     const result = await response.json();
-    console.log(result);
+    return result;
   } catch (error) {
     console.error(error);
   }
+  players.value = ref(getPlayers());
+
 }
 
 </script>
 
 <template>
     <div class = "fullscreen">
-    <Button @click="goToHome">HOME</Button>
+
+      <div class = "players">
+          <Players :players = players ></Players>
+          <Button @click="goToHome">HOME</Button>
+      </div>
+    
     </div>
 </template>
 
@@ -51,6 +62,14 @@ async function getPlayers() {
   right: 0;
   overflow: auto;
   
+}
+.players{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 25%;
+  width: 25%
 }
 
 
