@@ -416,3 +416,17 @@ Day 17 ~ 2 hours
 Currently dont know how to create a lobby based off the lobby id's in my database. How do i know which lobby/player each request comes from??
 
 Session Management is the answer.
+
+Day 18 2 hours
+
+How tf do i do this. Create a playerid and lobbyid on server side but also store web socket id? And do i go through a servlet or just use websockets for players man.
+
+Cant get a connection to my websocket endpoints for some reason. Fixed endpoints
+
+So instead of the clietn setting a post request to my backend, ive created the websocket connection when the client enters a username. 
+
+@NaturalId, designate a non primary key that can be used for lookups
+
+My DAOs // the repository layer is doing the database communication, thus it uses the HibernateUtil singleton which ONLY wraps a SessionFactory static attribute. Makes a lot more sense i since i remove a redundant layer of method calling.
+
+Websocket connection suddenly just stopped working. bruh
