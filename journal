@@ -430,3 +430,11 @@ So instead of the clietn setting a post request to my backend, ive created the w
 My DAOs // the repository layer is doing the database communication, thus it uses the HibernateUtil singleton which ONLY wraps a SessionFactory static attribute. Makes a lot more sense i since i remove a redundant layer of method calling.
 
 Websocket connection suddenly just stopped working. bruh
+
+Day 19 1 hour
+
+I had bad time management today. 1 hour to debug this WS connection!!! LETS GOOOO
+
+SHITTY
+
+1 hour and didnt fix the problem. No idea why i cant get a connection
