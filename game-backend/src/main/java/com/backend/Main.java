@@ -15,7 +15,8 @@ public class Main {
         try {
             Server server = new Server(8080);
 
-            ServletContextHandler socketHandler = new ServletContextHandler("/ws");
+            ServletContextHandler socketHandler = new ServletContextHandler("/");
+            socketHandler.addServlet(GameServlet.class, "/api/*");
 
             // Ensure that JavaxWebSocketServletContainerInitializer is initialized,
             // to setup the ServerContainer for this web application context.
@@ -27,12 +28,9 @@ public class Main {
 
             CrossOriginHandler crossOriginHandler = new CrossOriginHandler();
             crossOriginHandler.setAllowedOriginPatterns(Set.of("http://localhost:5173"));
-            server.setHandler(crossOriginHandler);
-
             crossOriginHandler.setHandler(socketHandler);
 
-            socketHandler.addServlet(GameServlet.class, "/api/*");
-
+            server.setHandler(crossOriginHandler);
             server.start();
         } catch (Exception e) {
             System.out.println(e);
