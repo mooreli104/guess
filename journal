@@ -438,3 +438,10 @@ I had bad time management today. 1 hour to debug this WS connection!!! LETS GOOO
 SHITTY
 
 1 hour and didnt fix the problem. No idea why i cant get a connection
+
+Day 20 1 hour
+
+FUCKING FINALLY FOUND THE PROBLEM. THE GETINSTANCE() IN THE GameEndpoint WAS CAUSING THE WS CONNECTION TO FAIL. WHY?!?!?!
+
+having private GameService gameServie = GameService.getInstance() causes the ws connection to fail. Why is this?
+Claude was saying that it could be that my service is not initalized but getInstance will always initalize the service before use if the service is not initalized. Moreover, the service has an empty constructor so theres no reason construction should fail either. 
