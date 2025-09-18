@@ -445,3 +445,19 @@ FUCKING FINALLY FOUND THE PROBLEM. THE GETINSTANCE() IN THE GameEndpoint WAS CAU
 
 having private GameService gameServie = GameService.getInstance() causes the ws connection to fail. Why is this?
 Claude was saying that it could be that my service is not initalized but getInstance will always initalize the service before use if the service is not initalized. Moreover, the service has an empty constructor so theres no reason construction should fail either. 
+
+Day 21 30 min 
+
+SessionFactory follows the Factory design pattern, which means that the SessionFactory defines an interface for creating an object but allows subclasses to alter the type of object created.
+
+A Sessionfactory can be wrapped in a singleton since it is thread safe but not a session!
+
+What does it mean to be not thread safe?
+
+a class or object is thread safe if it can be used by mutliple threads at a time. A session (Database connection) is not thread safe! imagine if 2 threads share a connection and one reads a value while the other one deletes it at the same time. 
+
+Thus, a factory is safe because each thread can get its own session to work with.
+
+Although a session factory allows sessions to be independent, the database itself becomes the shared resource. Thus, the database must implement its own thread safety, aka not my job.
+
+Difference between sessionfactory and singleton, a sessionfactory abstracts and centralizes object creation. A singleton guarantees one instance an object exists.
