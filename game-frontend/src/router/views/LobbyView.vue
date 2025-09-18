@@ -13,12 +13,8 @@ const goToHome = () => {
   router.push('/')
 }
 
-
-
-
 async function getPlayers() {
-  const url = "http://localhost:8080/api";
-  console.log(username.value)
+  const url = "http://localhost:8080/players/all";
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -28,13 +24,16 @@ async function getPlayers() {
     }
     
     const result = await response.json();
-    return result;
+    players.value = result;
   } catch (error) {
     console.error(error);
   }
-  players.value = ref(getPlayers());
 
 }
+
+window.addEventListener("load", () => {
+  console.log(getPlayers())
+});
 
 </script>
 
