@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import Button from 'primevue/button';
-
+import socket from '@/socket';
 
 
 const router = useRouter()
@@ -15,9 +15,9 @@ const goToLobby = () => {
 }
 
 async function createLobby() {
-const socket = new WebSocket("ws://localhost:8080/game");
       socket.addEventListener("open", () => {
       socket.send(username.value);
+
     });
 }
 
