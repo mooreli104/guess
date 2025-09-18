@@ -13,10 +13,6 @@ import jakarta.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/game")
 public class GameEndpoint {
-    public GameEndpoint() {
-    }
-
-    private GameService gameService = GameService.getInstance();
 
     @OnOpen
     public void onWebSocketOpen(Session session) {
@@ -38,11 +34,11 @@ public class GameEndpoint {
         Player newPlayer = new Player(playerName, session);
         Lobby newLobby = new Lobby();
 
-        this.gameService.createLobby(newLobby, newPlayer);
+        GameService.getInstance().createLobby(newLobby, newPlayer);
     }
 
     public void leaveLobby(String session) {
-        this.gameService.leaveLobby(session);
+        GameService.getInstance().leaveLobby(session);
     }
 
 }
