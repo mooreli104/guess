@@ -15,11 +15,10 @@ const goToLobby = () => {
 }
 
 async function createLobby() {
-  const socket = new WebSocket("ws://localhost:8080/ws/game")
+const socket = new WebSocket("ws://localhost:8080/game");
       socket.addEventListener("open", () => {
       socket.send(username.value);
     });
-
 }
 
 
