@@ -1,13 +1,19 @@
 package com.backend.controller.endpoints;
 
+import java.rmi.Remote;
+import java.util.Set;
 import com.backend.model.Lobby;
 import com.backend.model.Player;
 import com.backend.service.GameService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
+import jakarta.websocket.RemoteEndpoint;
 import jakarta.websocket.Session;
 import jakarta.websocket.server.ServerEndpoint;
 
@@ -21,24 +27,59 @@ public class GameEndpoint {
 
     @OnMessage
     public void onWebSocketText(Session session, String message) {
-        createLobby(message, session.getId());
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonRootNode = objectMapper.readTree(message);
+            String action = jsonRootNode.get("action").asText();
+            RemoteEndpoint.Async rep = session.getAsyncRemote();
+
+            switch (action) {
+                case "createLobby":
+
+                    // Set<Player> players = getPlayers(session.getId());
+                    // System.out.println(players);
+                    // String playersJson = objectMapper.writeValueAsString(players);
+                    // rep.sendText(playersJson);
+                    // System.out.println(playersJson);
+
+                    String username = jsonRootNode.get("username").asText();
+                    createLobby(username, session.getId());
+
+                    break;
+                case "joinLobby":
+
+                    break;
+
+                default:
+                    break;
+            }
+        } catch (JsonProcessingException e) {
+            System.out.println(e);
+        }
     }
 
     @OnClose
     public void onWebSocketClose(Session session, CloseReason reason) {
+        System.out.println(session.getId() + " disconnected");
+
         leaveLobby(session.getId());
-        System.out.println(session.getId() + "disconnected");
     }
 
     public void createLobby(String playerName, String session) {
         Player newPlayer = new Player(playerName, session);
         Lobby newLobby = new Lobby();
 
-        GameService.getInstance().createLobby(newLobby, newPlayer);
+        GameService game = GameService.getInstance();
+        game.createLobby(newLobby, newPlayer);
     }
 
     public void leaveLobby(String session) {
         GameService.getInstance().leaveLobby(session);
+    }
+
+    public Set<Player> getPlayers(String session) {
+        Set<Player> players = GameService.getInstance().fetchPlayers(session);
+        return players;
     }
 
 }
