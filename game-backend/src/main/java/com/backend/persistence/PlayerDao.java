@@ -1,5 +1,8 @@
 package com.backend.persistence;
 
+import java.util.Set;
+
+import com.backend.model.Lobby;
 import com.backend.model.Player;
 import com.backend.util.HibernateUtil;
 
@@ -37,6 +40,15 @@ public class PlayerDao implements BaseDao<Player> {
         HibernateUtil.getInstance().inTransaction(session -> {
             session.flush();
         });
+    }
+
+    public Set<Player> getPlayers(String id) {
+        Player player = findById(id);
+        Lobby lobby = player.getLobby();
+        System.out.println("HI");
+
+        Set<Player> players = lobby.getPlayers();
+        return players;
     }
 
 }
