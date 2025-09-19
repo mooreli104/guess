@@ -1,5 +1,7 @@
 package com.backend.service;
 
+import java.util.Set;
+
 import com.backend.model.Lobby;
 import com.backend.model.Player;
 import com.backend.persistence.LobbyDao;
@@ -14,13 +16,20 @@ public class GameService {
     }
 
     public static GameService getInstance() {
+
         if (GameService.game == null) {
             GameService.game = new GameService();
+            System.out.println("b");
+
         }
+        System.out.println("a");
+
         return GameService.game;
     }
 
     public void createLobby(Lobby lobby, Player player) {
+        System.out.println("player");
+
         this.lobbyDao.save(lobby);
         player.joinLobby(lobby);
         this.playerDao.save(player);
@@ -30,6 +39,10 @@ public class GameService {
         Player player = this.playerDao.findById(session);
         player.leaveLobby();
         this.playerDao.update();
+    }
 
+    public Set<Player> fetchPlayers(String session) {
+        Set<Player> players = this.playerDao.getPlayers(session);
+        return players;
     }
 }
