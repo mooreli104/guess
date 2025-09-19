@@ -42,4 +42,8 @@ public class Lobby {
         return this.lobbyID.toString();
     }
 
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
 }
