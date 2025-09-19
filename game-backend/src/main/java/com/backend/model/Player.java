@@ -67,7 +67,10 @@ public class Player {
 
     public void leaveLobby() {
         this.lobby = null;
+    }
 
+    public Lobby getLobby() {
+        return lobby;
     }
 
     @Override
