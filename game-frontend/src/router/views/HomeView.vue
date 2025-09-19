@@ -3,22 +3,20 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import Button from 'primevue/button';
 import socket from '@/socket';
-
+SVGAnimateElement
 
 const router = useRouter()
 
 const username = ref('');
 
 const goToLobby = () => {
-  router.push("/lobby")
   createLobby()
+  router.push("/lobby")
 }
 
 async function createLobby() {
-      socket.addEventListener("open", () => {
-      socket.send(username.value);
-
-    });
+      socket.send(JSON.stringify({"username": username.value,
+                    "action": "createLobby"}));
 }
 
 
