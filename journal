@@ -473,3 +473,15 @@ How to maintain websocket conncetion across frontend page changes?
 Create a socket object
 
 Next step: Populate the lobby w/ websocket connection w/ players in the lobby
+
+Day 23 1.45 hours
+
+Why JSON? Use json because its text only which means it can be used by all computers and any programming language. Moreover, it has a specific format which ensures consistency. 
+
+Had an error: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'object': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+
+I was sending an object Object to my backend. In my frontend i needed to call JSON.stringify() before sending the message.
+
+Current Issue. Websocket connection is getting disconnected after a page route.
+
+Need fix: Find a way to keep a websocket connection alive across vue routes.
