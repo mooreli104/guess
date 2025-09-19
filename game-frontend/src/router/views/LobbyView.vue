@@ -1,9 +1,10 @@
 <script setup>
 
 import { useRouter } from 'vue-router'
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import Button from 'primevue/button';
 import Players from "../components/Player.vue"
+import socket from '@/socket';
 
 
 const router = useRouter() // Uses router from main.js to push Lobby page
@@ -14,26 +15,10 @@ const goToHome = () => {
 }
 
 async function getPlayers() {
-  const url = "http://localhost:8080/players/all";
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-    });
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-    
-    const result = await response.json();
-    players.value = result;
-  } catch (error) {
-    console.error(error);
-  }
-
+    socket.send(JSON.stringify({"action": "lobby"}));
 }
 
-window.addEventListener("load", () => {
-  console.log(getPlayers())
-});
+getPlayers()
 
 </script>
 
