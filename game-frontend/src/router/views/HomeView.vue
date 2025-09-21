@@ -2,8 +2,6 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import Button from 'primevue/button';
-import socket from '@/socket';
-SVGAnimateElement
 
 const router = useRouter()
 

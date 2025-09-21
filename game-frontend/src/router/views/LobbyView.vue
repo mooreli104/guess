@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue';
 import Button from 'primevue/button';
 import Players from "../components/Player.vue"
-import socket from '@/socket';
 
 
 const router = useRouter() // Uses router from main.js to push Lobby page
