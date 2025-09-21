@@ -489,3 +489,16 @@ Need fix: Find a way to keep a websocket connection alive across vue routes.
 Day 24 0 time
 
 First missed day. Lets not repeat.
+
+Day 25 1 hour
+
+Pinia is a store library for Vue
+
+Vue, how do i persist a websocket connection across multiple vue components?
+
+Simple State Management with Reactivity API​
+If you have a piece of state that should be shared by multiple instances, you can use reactive() to create a reactive object, and then import it into multiple components:
+
+Better to use a store
+
+A Store (like Pinia) is an entity holding state and business logic that isn't bound to your Component tree. In other words, it hosts global state
