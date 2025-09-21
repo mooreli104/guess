@@ -485,3 +485,7 @@ I was sending an object Object to my backend. In my frontend i needed to call JS
 Current Issue. Websocket connection is getting disconnected after a page route.
 
 Need fix: Find a way to keep a websocket connection alive across vue routes.
+
+Day 24 0 time
+
+First missed day. Lets not repeat.
