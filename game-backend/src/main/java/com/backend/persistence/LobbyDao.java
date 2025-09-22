@@ -7,7 +7,6 @@ public class LobbyDao implements BaseDao<Lobby> {
     private static LobbyDao lobbyDao;
 
     private LobbyDao() {
-        LobbyDao.lobbyDao = new LobbyDao();
     }
 
     public static LobbyDao getInstance() {

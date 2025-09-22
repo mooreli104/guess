@@ -10,7 +10,6 @@ public class PlayerDao implements BaseDao<Player> {
     private static PlayerDao playerDao;
 
     private PlayerDao() {
-        PlayerDao.playerDao = new PlayerDao();
     }
 
     public static PlayerDao getInstance() {
@@ -45,7 +44,6 @@ public class PlayerDao implements BaseDao<Player> {
     public Set<Player> getPlayers(String id) {
         Player player = findById(id);
         Lobby lobby = player.getLobby();
-        System.out.println("HI");
 
         Set<Player> players = lobby.getPlayers();
         return players;
