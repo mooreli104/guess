@@ -4,13 +4,14 @@ import java.util.Set;
 
 import com.backend.model.Lobby;
 import com.backend.model.Player;
+import com.backend.persistence.BaseDao;
 import com.backend.persistence.LobbyDao;
 import com.backend.persistence.PlayerDao;
 
 public class GameService {
     private static GameService game;
-    private LobbyDao lobbyDao = LobbyDao.getInstance();
-    private PlayerDao playerDao = PlayerDao.getInstance();
+    private BaseDao<Player> playerDao = PlayerDao.getInstance();
+    private BaseDao<Lobby> lobbyDao = LobbyDao.getInstance();
 
     private GameService() {
     }
@@ -19,16 +20,11 @@ public class GameService {
 
         if (GameService.game == null) {
             GameService.game = new GameService();
-            System.out.println("b");
-
         }
-        System.out.println("a");
-
         return GameService.game;
     }
 
     public void createLobby(Lobby lobby, Player player) {
-        System.out.println("player");
 
         this.lobbyDao.save(lobby);
         player.joinLobby(lobby);
@@ -42,7 +38,7 @@ public class GameService {
     }
 
     public Set<Player> fetchPlayers(String session) {
-        Set<Player> players = this.playerDao.getPlayers(session);
+        Set<Player> players = ((PlayerDao) this.playerDao).getPlayers(session);
         return players;
     }
 }
