@@ -1,6 +1,5 @@
 package com.backend.controller.endpoints;
 
-import java.rmi.Remote;
 import java.util.Set;
 import com.backend.model.Lobby;
 import com.backend.model.Player;
@@ -28,6 +27,7 @@ public class GameEndpoint {
     @OnMessage
     public void onWebSocketText(Session session, String message) {
         try {
+
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonRootNode = objectMapper.readTree(message);
             String action = jsonRootNode.get("action").asText();
@@ -35,13 +35,6 @@ public class GameEndpoint {
 
             switch (action) {
                 case "createLobby":
-
-                    // Set<Player> players = getPlayers(session.getId());
-                    // System.out.println(players);
-                    // String playersJson = objectMapper.writeValueAsString(players);
-                    // rep.sendText(playersJson);
-                    // System.out.println(playersJson);
-
                     String username = jsonRootNode.get("username").asText();
                     createLobby(username, session.getId());
 
@@ -68,9 +61,9 @@ public class GameEndpoint {
     public void createLobby(String playerName, String session) {
         Player newPlayer = new Player(playerName, session);
         Lobby newLobby = new Lobby();
-
         GameService game = GameService.getInstance();
         game.createLobby(newLobby, newPlayer);
+
     }
 
     public void leaveLobby(String session) {
