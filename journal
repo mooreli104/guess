@@ -502,3 +502,34 @@ If you have a piece of state that should be shared by multiple instances, you ca
 Better to use a store
 
 A Store (like Pinia) is an entity holding state and business logic that isn't bound to your Component tree. In other words, it hosts global state
+
+Day 26 2 hours
+
+My game service singleton getInstance() method just doesnt work.
+
+The same problem with the GamerSerivce() contrsuctor has appeared.
+
+Actually its my playerdao constructor that was blocking everything. 
+
+When calling new GameService() JVM allocates memory for the object with all instance variables unititialized. Then after ensuring parent constructor is ran, runs field initalizers and initalizer blocks in order. Thus, after my GameService() constructor is called, it goes down till it hits my PlayerDao.getInstance() which calls the PlayerDao constructor which is where the blocking is occuring. 
+
+This problem is why Dependency Injection exists! W/ Dependency injection no need to look through these dependency hiearchies 
+
+Since GameService is tightly coupled (highly dependent) with PlayerDao and LobbyDao, if PlayerDao.getInstance or LobbyDao.getInstance or either one of these classes's constructors fail, gameservice initalization will fail too. Then, as the developer, I need to look through a whole chain of object construction to see where the failure occured.
+
+With DI, i just need to declare that GameService "needs" a PlayerDao and a LobbyDao, then the DI container creates and provides those dependencies w/ clear error trace.
+
+Helpful resource today: https://www.reddit.com/r/java/comments/12imnqx/why_dependency_injection/
+
+PlayerDao constructor is getting called infinitely
+
+my goodness im silly. calling the constructor in the constructor...
+
+Day Summary:
+Cleared a lot of roadblocks
+
+To dos:
+
+Add dependency injection 
+On WS disconnect, remove the player from the database
+If a lobby has zero players, remove it from the database
