@@ -4,17 +4,21 @@ import { useRouter } from 'vue-router'
 import { ref } from 'vue';
 import Button from 'primevue/button';
 import Players from "../components/Player.vue"
-
+import { useSocket } from '@/stores/store';
 
 const router = useRouter() // Uses router from main.js to push Lobby page
 const players = ref(null)
+const socket = useSocket()
+
+
 
 const goToHome = () => {
   router.push('/')
 }
 
+
 async function getPlayers() {
-    socket.send(JSON.stringify({"action": "lobby"}));
+    socket.socket.send(JSON.stringify({"action": "lobby"}));
 }
 
 getPlayers()

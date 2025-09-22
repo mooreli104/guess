@@ -2,18 +2,20 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import Button from 'primevue/button';
+import { useSocket } from '@/stores/store';
 
 const router = useRouter()
-
+const socket = useSocket()
 const username = ref('');
 
 const goToLobby = () => {
+  // router.push("/lobby")
   createLobby()
-  router.push("/lobby")
+
 }
 
 async function createLobby() {
-      socket.send(JSON.stringify({"username": username.value,
+      socket.socket.send(JSON.stringify({"username": username.value,
                     "action": "createLobby"}));
 }
 
@@ -24,7 +26,7 @@ async function createLobby() {
 
   <div class="fullscreen">
     <input type="text" v-model="username" placeholder="Enter a nickname!">
-    <Button type="submit" value="Start" @click="goToLobby">Start</Button>
+    <Button type="submit" value="Start" @click.prevent="goToLobby">Start</Button>
   </div>
 </template>
 
