@@ -533,3 +533,7 @@ To dos:
 Add dependency injection 
 On WS disconnect, remove the player from the database
 If a lobby has zero players, remove it from the database
+
+Day 27 40 minutes
+
+lobby.removePlayer() in GameService is getting stuck.
