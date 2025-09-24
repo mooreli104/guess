@@ -37,6 +37,12 @@ public class Lobby {
         this.players.addAll(players);
     }
 
+    public void removePlayer(Player player) {
+        System.out.println("HELLO");
+        player.leaveLobby();
+        this.players.remove(player);
+    }
+
     @Override
     public String toString() {
         return this.lobbyID.toString();

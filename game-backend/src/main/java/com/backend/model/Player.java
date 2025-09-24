@@ -45,7 +45,6 @@ public class Player {
     }
 
     public void joinLobby(Lobby lobby) {
-
         this.lobby = lobby;
     }
 
@@ -75,7 +74,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return this.username + "\n" + this.session;
+        return this.username + " " + this.session;
     }
 
 }
