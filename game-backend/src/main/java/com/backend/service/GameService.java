@@ -8,8 +8,6 @@ import com.backend.persistence.BaseDao;
 import com.backend.persistence.LobbyDao;
 import com.backend.persistence.PlayerDao;
 
-import jakarta.transaction.Transactional;
-
 public class GameService {
     private static GameService game;
     private BaseDao<Player> playerDao = PlayerDao.getInstance();
@@ -34,16 +32,21 @@ public class GameService {
     }
 
     public void leaveLobby(String session) {
-        Player player = this.playerDao.findById(session);
-        Lobby lobby = player.getLobby();
-        System.out.println("MADE IT");
-
-        lobby.removePlayer(player);
-        System.out.println("MADE");
+        try {
+            Player player = this.playerDao.findById(session);
+            Lobby lobby = ((PlayerDao) this.playerDao).getLobby(player.getId());
+            this.playerDao.remove(player);
+            if (lobby.getPlayers().size() == 0) {
+                this.lobbyDao.remove(lobby);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public Set<Player> fetchPlayers(String session) {
         Set<Player> players = ((PlayerDao) this.playerDao).getPlayers(session);
         return players;
     }
+
 }
