@@ -537,3 +537,50 @@ If a lobby has zero players, remove it from the database
 Day 27 40 minutes
 
 lobby.removePlayer() in GameService is getting stuck.
+
+Day 28 2 hours
+
+lobby.getLobby doesn't seem to be working.
+
+This was the issue org.hibernate.LazyInitializationException: Could not initialize proxy [com.backend.model.Lobby#fd7085ea-399c-4733-8ccd-881d1e66a818] - no session
+
+Trying to get the lobby object from my player object w/ getLobby()
+
+Overriding vs overloading 
+
+overriding is changing the implementation of a function
+overloading is using the same method name but different parameters
+
+when overriding equals(Object o)
+1. check object equality with ==
+2. check type w/ instanceOF
+3. cast object to class of this and do checks
+
+why override equals(Object o)?
+1. Say you create a 2 Person objects, new Person("Mike", 54)
+2. Althought they might look like the same person, for JVM they are not because these 2 objects take up different spots in memory.
+3. And since default operators cannot be overloaded, equals() allows programmers to determine what makes their objects equal.
+
+When overriding hashcode()
+1. return the same thing every time
+2. spread out the return values
+
+Why override hashcode()?
+1. 
+
+Hibernate persistence contexts
+
+A persistence context is a sort of cache; we sometimes call it the "first-level cache", to distinguish it from the second-level cache. 
+
+A persistence context is the "Session" or the connection between a java object and the database
+
+Every entity can be in 3 states respective to a given persistence context
+1. transient — never persistent, and not associated with the persistence context,
+
+2. persistent — currently associated with the persistence context, or
+
+3. detached — previously persistent in another session, but not currently associated with this persistence context.
+
+Current issues: How to remove a detatched entity from my database? Find() 
+
+To do: switch over to dependency injection, dockerize application, clean up code, summarize what i've learned about hibernate, jetty, and different design/architecture patterns.
