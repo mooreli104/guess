@@ -5,6 +5,10 @@ public interface BaseDao<T> {
 
     void update();
 
+    void merge(T object);
+
+    void remove(T object);
+
     T findById(String id);
 
 }
