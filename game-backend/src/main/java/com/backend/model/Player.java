@@ -69,12 +69,27 @@ public class Player {
     }
 
     public Lobby getLobby() {
-        return lobby;
+        return this.lobby;
     }
 
     @Override
     public String toString() {
         return this.username + " " + this.session;
+    }
+
+    @Override
+    public int hashCode() {
+        return uuid.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof Player))
+            return false;
+        Player player = (Player) obj;
+        return player.uuid.equals(this.uuid);
     }
 
 }

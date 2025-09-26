@@ -38,8 +38,6 @@ public class Lobby {
     }
 
     public void removePlayer(Player player) {
-        System.out.println("HELLO");
-        player.leaveLobby();
         this.players.remove(player);
     }
 
@@ -48,8 +46,23 @@ public class Lobby {
         return this.lobbyID.toString();
     }
 
+    @Override
+    public int hashCode() {
+        return this.players.size();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Lobby))
+            return false;
+        Lobby lobby = (Lobby) obj;
+        return this.lobbyID == lobby.lobbyID;
+    }
+
     public Set<Player> getPlayers() {
-        return players;
+        return this.players;
     }
 
 }
