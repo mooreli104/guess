@@ -53,9 +53,9 @@ public class GameEndpoint {
 
     @OnClose
     public void onWebSocketClose(Session session, CloseReason reason) {
-        System.out.println(session.getId() + " disconnected");
-
-        leaveLobby(session.getId());
+        String id = session.getId();
+        System.out.println(id + " disconnected");
+        leaveLobby(id);
     }
 
     public void createLobby(String playerName, String session) {
