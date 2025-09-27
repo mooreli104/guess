@@ -49,4 +49,10 @@ public class GameService {
         return players;
     }
 
+    public Lobby getLobby(String session) {
+        Player player = this.playerDao.findById(session);
+        Lobby lobby = ((PlayerDao) this.playerDao).getLobby(player.getId());
+        return lobby;
+    }
+
 }
