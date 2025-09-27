@@ -9,9 +9,8 @@ const socket = useSocket()
 const username = ref('');
 
 const goToLobby = () => {
-  // router.push("/lobby")
+  router.push("/lobby")
   createLobby()
-
 }
 
 async function createLobby() {
