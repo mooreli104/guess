@@ -18,8 +18,12 @@ const goToHome = () => {
 
 
 async function getPlayers() {
-    socket.socket.send(JSON.stringify({"action": "lobby"}));
+    socket.socket.send(JSON.stringify({"action": "getLobby"}));
 }
+
+socket.socket.addEventListener("message", (event) => {
+  console.log("Message from server ", event.data);
+});
 
 getPlayers()
 
