@@ -584,3 +584,16 @@ Every entity can be in 3 states respective to a given persistence context
 Current issues: How to remove a detatched entity from my database? Find() 
 
 To do: switch over to dependency injection, dockerize application, clean up code, summarize what i've learned about hibernate, jetty, and different design/architecture patterns.
+
+Day 29 1.2 hours
+
+To bring a detatched entity back into a persistent state, merge it back into a persistent context with merge()
+
+merge(Object)
+Copy the state of a given detached object to a corresponding managed persistent instance and return the persistent object
+
+Entities are now removed when their ws connection is gone and when an lobby is empty.
+
+Now: Send players of a lobby back to frontend
+
+FIX CODE AND UNDERSTAND WHAT IVE WRITTEN
