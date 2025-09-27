@@ -71,7 +71,7 @@ public class PlayerDao implements BaseDao<Player> {
     @Override
     public void remove(Player player) {
         HibernateUtil.getInstance().inTransaction(session -> {
-            Player persistentPlayer = findById(player.getId());
+            Player persistentPlayer = session.merge(player);
             session.remove(persistentPlayer);
         });
     }
