@@ -55,7 +55,7 @@ public class LobbyDao implements BaseDao<Lobby> {
     @Override
     public void remove(Lobby lobby) {
         HibernateUtil.getInstance().inTransaction(session -> {
-            Lobby persistentLobby = findById(lobby.getId());
+            Lobby persistentLobby = session.merge(lobby);
             session.remove(persistentLobby);
         });
     }
