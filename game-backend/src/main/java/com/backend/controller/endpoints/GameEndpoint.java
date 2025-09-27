@@ -43,6 +43,13 @@ public class GameEndpoint {
 
                     break;
 
+                case "getLobby":
+
+                    Lobby lobby = getLobby(session);
+
+                    rep.sendObject(lobby.getPlayers());
+                    break;
+
                 default:
                     break;
             }
@@ -64,6 +71,10 @@ public class GameEndpoint {
         GameService game = GameService.getInstance();
         game.createLobby(newLobby, newPlayer);
 
+    }
+
+    public Lobby getLobby(Session session) {
+        return GameService.getInstance().getLobby(session.getId());
     }
 
     public void leaveLobby(String session) {
