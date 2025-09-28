@@ -597,3 +597,14 @@ Entities are now removed when their ws connection is gone and when an lobby is e
 Now: Send players of a lobby back to frontend
 
 FIX CODE AND UNDERSTAND WHAT IVE WRITTEN
+
+Day 30 1 hour
+
+
+Mapped by in Hibernate signals the "unowned" side
+
+Currently unsure of separation betweens service and dao layers, and whether or not my POJOs need to have getters and setters for the entity mapping.
+
+Currently cannot read sendObject() data on frontend
+
+Fixed it, Since i had to map my objects, player and lobby held references of each other which caused infinite recusrion when trying to write as a json string using jackson. Fixed by using jackson annotations.
