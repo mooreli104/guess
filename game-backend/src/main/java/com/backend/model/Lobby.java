@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +21,7 @@ public class Lobby {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID lobbyID;
 
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "lobby", orphanRemoval = true)
     private Set<Player> players;
 
@@ -48,7 +51,7 @@ public class Lobby {
 
     @Override
     public int hashCode() {
-        return this.players.size();
+        return this.lobbyID.hashCode();
     }
 
     @Override
