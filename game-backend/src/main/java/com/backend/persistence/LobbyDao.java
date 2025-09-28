@@ -1,8 +1,10 @@
 package com.backend.persistence;
 
+import java.util.Set;
 import java.util.UUID;
 
 import com.backend.model.Lobby;
+import com.backend.model.Player;
 import com.backend.util.HibernateUtil;
 
 public class LobbyDao implements BaseDao<Lobby> {
@@ -58,6 +60,13 @@ public class LobbyDao implements BaseDao<Lobby> {
             Lobby persistentLobby = session.merge(lobby);
             session.remove(persistentLobby);
         });
+    }
+
+    public Set<Player> getPlayers(UUID id) {
+        var graph = HibernateUtil.getInstance().createEntityGraph(Lobby.class);
+        graph.addSubgraph("players");
+        Lobby lobby = HibernateUtil.getInstance().createEntityManager().find(graph, id);
+        return lobby.getPlayers();
     }
 
 }
