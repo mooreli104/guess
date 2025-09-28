@@ -55,4 +55,7 @@ public class GameService {
         return lobby;
     }
 
+    public Set<Player> getPlayers(Lobby lobby) {
+        return ((LobbyDao) this.lobbyDao).getPlayers(lobby.getId());
+    }
 }
