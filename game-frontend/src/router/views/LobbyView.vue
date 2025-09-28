@@ -3,17 +3,20 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue';
 import Button from 'primevue/button';
-import Players from "../components/Player.vue"
+import Player from "../components/Player.vue"
 import { useSocket } from '@/stores/store';
 
-const router = useRouter() // Uses router from main.js to push Lobby page
-const players = ref(null)
+const router = useRouter() // Uses router from router.js to push Lobby page
 const socket = useSocket()
-
-
+var players = ref()
 
 const goToHome = () => {
   router.push('/')
+  socket.socket.close();
+}
+
+const startGame = () => {
+  router.push('/game')
 }
 
 
@@ -22,7 +25,7 @@ async function getPlayers() {
 }
 
 socket.socket.addEventListener("message", (event) => {
-  console.log("Message from server ", event.data);
+  players.value = JSON.parse(event.data)
 });
 
 getPlayers()
@@ -31,12 +34,11 @@ getPlayers()
 
 <template>
     <div class = "fullscreen">
-
       <div class = "players">
-          <Players :players = players ></Players>
+          <Player v-if= "players" :player = players></Player>
           <Button @click="goToHome">HOME</Button>
+          <Button @click="startGame">START</Button>
       </div>
-    
     </div>
 </template>
 
