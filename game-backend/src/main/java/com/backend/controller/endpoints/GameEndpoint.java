@@ -44,10 +44,11 @@ public class GameEndpoint {
                     break;
 
                 case "getLobby":
-
                     Lobby lobby = getLobby(session);
-
-                    rep.sendObject(lobby.getPlayers());
+                    Set<Player> players = lobby.getPlayers();
+                    String jsonPlayers = objectMapper.writeValueAsString(players);
+                    rep.sendText(jsonPlayers);
+                    // rep.sendObject(lobby.getPlayers());
                     break;
 
                 default:
