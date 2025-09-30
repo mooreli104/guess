@@ -14,8 +14,10 @@ const goToLobby = () => {
 }
 
 async function createLobby() {
-      socket.socket.send(JSON.stringify({"username": username.value,
-                    "action": "createLobby"}));
+  socket.socket.send(JSON.stringify({
+    "username": username.value,
+    "action": "createLobby"
+  }));
 }
 
 
@@ -23,44 +25,251 @@ async function createLobby() {
 </script>
 
 <template>
-  <div class="fullscreen">
+
+  <div class='page'>
+    <p>Guess anime, tv shows, cartoons, and more w/ friends!</p>
+    <h2>
+      ShowGuessr
+    </h2>
+    <div class = 'input'>
     <input type="text" v-model="username" placeholder="Enter a nickname!">
-    <Button v-if="username" type="submit" value="Start" @click.prevent="goToLobby" label="normal" raised rounded style = "top: 1%">Start</Button>
-    <Button v-else label="normal" severity="secondary" raised rounded >Start</Button>
+    <Button v-if="username" type="submit" value="Start" @click.prevent="goToLobby" label="normal" raised rounded
+      style="top: 1%">Start</Button>
+    <Button v-else label="normal" severity="secondary" raised rounded>Start</Button>
+    </div>
+    <br>
   </div>
+
+  <div class="wrap">
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/baozi-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/board-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/chinese-lion-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img
+        src="../../assets/svg/chinese_symbols/chinese-style-spring-festival-element-icon-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/chinese-zodiac-signs-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/dragon-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/firecracker-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/fish-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/goat-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/horse-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/knot-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/lantern-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/lucky-coin-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/ox-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/plum-flower-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/rabbit-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/rat-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/rooster-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/snake-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/tangerine-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/tangyuan-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/the-monkey-svgrepo-com.svg" alt=""></div>
+  <div class="svg"><img src="../../assets/svg/chinese_symbols/tiger-svgrepo-com.svg" alt=""></div>
+  </div>
+
+
 </template>
 
 <style scoped>
-
-
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
-	font-family: 'Playfair Display', serif;
-	color: rgba(172,170,190, 1);
-	text-rendering: optimizeLegibility;
-	font-smooth: always;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background-color: purple;
-	font-size: 14px;
-	overflow: hidden;
+p, h2, .input{
+  z-index: 2;
 }
 
 
-.fullscreen {
+.wrap {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.page {
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: auto;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-size: 1.4vw;
+  color: #3A5FCD;
+  background-image:linear-gradient(to bottom, #F3F7FF, #C8D6FF);
+
+  h2 {
+    margin-top: 3%;
+    font-weight: bold;
+    font-size: 6.5vw;
+    color: #3A5FCD;
+  }
 }
 
+.svg {
+  position: absolute;
+  bottom: 0;
+  /* start at bottom of viewport */
+  will-change: transform;
+  /* hint for performance */
+  pointer-events: none;
+  transform-origin: center center;
+
+  img {
+    width: 10%;
+    /* or any size you want */
+    height: auto;
+    /* keeps aspect ratio */
+  }
+}
+
+.svg:nth-child(1) {
+  left: 10%;
+  animation: raise1 12s linear infinite;
+  animation-delay: -2s;
+  transform: scale(0.9) rotate(45deg);
+}
+
+@keyframes raise1 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(180deg);
+  }
+}
+
+.svg:nth-child(2) {
+  left: 35%;
+  animation: raise2 18s linear infinite;
+  animation-delay: -3s;
+  transform: scale(0.9) rotate(120deg);
+}
+
+@keyframes raise2 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(300deg);
+  }
+}
+
+.svg:nth-child(3) {
+  left: 60%;
+  animation: raise3 9s linear infinite;
+  animation-delay: -4s;
+  transform: scale(0.9) rotate(210deg);
+}
+
+@keyframes raise3 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(30deg);
+  }
+}
+
+.svg:nth-child(4) {
+  left: 20%;
+  animation: raise4 14s linear infinite;
+  animation-delay: -1s;
+  transform: scale(0.9) rotate(330deg);
+}
+
+@keyframes raise4 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(100deg);
+  }
+}
+
+.svg:nth-child(5) {
+  left: 75%;
+  animation: raise5 19s linear infinite;
+  animation-delay: -5s;
+  transform: scale(0.9) rotate(60deg);
+}
+
+@keyframes raise5 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(270deg);
+  }
+}
+
+.svg:nth-child(6) {
+  left: 45%;
+  animation: raise6 16s linear infinite;
+  animation-delay: -2s;
+  transform: scale(0.9) rotate(150deg);
+}
+
+@keyframes raise6 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(360deg);
+  }
+}
+
+.svg:nth-child(7) {
+  left: 5%;
+  animation: raise7 16s linear infinite;
+  animation-delay: -3s;
+  transform: scale(0.9) rotate(250deg);
+}
+
+@keyframes raise7 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(140deg);
+  }
+}
+
+.svg:nth-child(8) {
+  left: 55%;
+  animation: raise8 11s linear infinite;
+  animation-delay: -4s;
+  transform: scale(0.9) rotate(320deg);
+}
+
+@keyframes raise8 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(80deg);
+  }
+}
+
+.svg:nth-child(9) {
+  left: 85%;
+  animation: raise9 20s linear infinite;
+  animation-delay: -1s;
+  transform: scale(1.5) rotate(90deg);
+}
+
+@keyframes raise9 {
+  to {
+    bottom: 150vh;
+    transform: scale(1.5) rotate(200deg);
+  }
+}
+
+.svg:nth-child(10) {
+  left: 40%;
+  animation: raise10 13s linear infinite;
+  animation-delay: -5s;
+  transform: scale(0.9) rotate(180deg);
+}
+
+@keyframes raise10 {
+  to {
+    bottom: 150vh;
+    transform: scale(0.9) rotate(300deg);
+  }
+}
+</style>
+
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 </style>
