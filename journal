@@ -619,3 +619,7 @@ I'm trying to pass a prop to a child component, but before the prop can be inita
 Use v-if to check if the prop is initalized. A ref will be wrapped in a ref object with a .value object
 
 Adding svg animations. Need to figure out how refresh ws connection once go back to home
+
+Day 32 1.5 hours
+
+Front end stuff :P
