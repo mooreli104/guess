@@ -27,15 +27,14 @@ async function createLobby() {
 <template>
 
   <div class='page'>
-    <p>Guess anime, tv shows, cartoons, and more w/ friends!</p>
     <h2>
       ShowGuessr
     </h2>
-    <div class = 'input'>
-    <input type="text" v-model="username" placeholder="Enter a nickname!">
-    <Button v-if="username" type="submit" value="Start" @click.prevent="goToLobby" label="normal" raised rounded
-      style="top: 1%">Start</Button>
-    <Button v-else label="normal" severity="secondary" raised rounded>Start</Button>
+    <div class='input'>
+      <input type="text" v-model="username" placeholder="Enter a nickname!">
+      <Button v-if="username" type="submit" value="Start" @click.prevent="goToLobby" label="normal" raised rounded
+        style="top: 1%">Start</Button>
+      <Button v-else label="normal" severity="secondary" raised rounded>Start</Button>
     </div>
     <br>
   </div>
@@ -52,19 +51,19 @@ async function createLobby() {
     <div class="svg"><img src="../../assets/svg/chinese_symbols/fish-svgrepo-com.svg" alt=""></div>
     <div class="svg"><img src="../../assets/svg/chinese_symbols/goat-svgrepo-com.svg" alt=""></div>
     <div class="svg"><img src="../../assets/svg/chinese_symbols/horse-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/knot-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/lantern-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/lucky-coin-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/ox-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/plum-flower-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/rabbit-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/rat-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/rooster-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/snake-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/tangerine-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/tangyuan-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/the-monkey-svgrepo-com.svg" alt=""></div>
-  <div class="svg"><img src="../../assets/svg/chinese_symbols/tiger-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/knot-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/lantern-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/lucky-coin-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/ox-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/plum-flower-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/rabbit-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/rat-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/rooster-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/snake-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/tangerine-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/tangyuan-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/the-monkey-svgrepo-com.svg" alt=""></div>
+    <div class="svg"><img src="../../assets/svg/chinese_symbols/tiger-svgrepo-com.svg" alt=""></div>
   </div>
 
 
@@ -74,9 +73,22 @@ async function createLobby() {
 * {
   box-sizing: border-box;
 }
-
-p, h2, .input{
+h2,
+.input {
   z-index: 2;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin-top: 20%;
+}
+input{
+  border-radius: 5%;
+  border: none;
+  margin-bottom: 5%;
+  padding: 5%;
 }
 
 
@@ -94,15 +106,18 @@ p, h2, .input{
   align-items: center;
   height: 100vh;
   width: 100vw;
-  font-size: 1.4vw;
-  color: #3A5FCD;
-  background-image:linear-gradient(to bottom, #F3F7FF, #C8D6FF);
+  background-image: linear-gradient(45deg, #E7BD8A 50%, #5B000B 50%);
 
   h2 {
-    margin-top: 3%;
-    font-weight: bold;
     font-size: 6.5vw;
-    color: #3A5FCD;
+      position: fixed;
+
+    background: linear-gradient(45deg,
+        #5B000B 50%,
+        #E7BD8A 50%);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
   }
 }
 
