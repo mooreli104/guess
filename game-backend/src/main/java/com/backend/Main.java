@@ -7,6 +7,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.CrossOriginHandler;
 
 import com.backend.controller.endpoints.GameEndpoint;
+import com.backend.controller.servlets.GameServlet;
 import com.backend.controller.servlets.LobbyServlet;
 import com.backend.controller.servlets.PlayerServlet;
 
@@ -19,6 +20,7 @@ public class Main {
             ServletContextHandler socketHandler = new ServletContextHandler("/");
             socketHandler.addServlet(PlayerServlet.class, "/players/*");
             socketHandler.addServlet(LobbyServlet.class, "/lobby/*");
+            socketHandler.addServlet(GameServlet.class, "/game/*");
 
             // Ensure that JavaxWebSocketServletContainerInitializer is initialized,
             // to setup the ServerContainer for this web application context.
