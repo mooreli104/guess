@@ -35,16 +35,19 @@ public class MyAnimeListAPI {
     }
 
     public String getAnimeImage() {
-        String url = "";
+        System.out.println("2");
+        System.out.println(System.getenv("CLIENT_ID_MAL"));
+        System.out.println("1");
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.myanimelist.net/v2/anime/ranking/?ranking_type=all&limit=10"))
+                .uri(URI.create("https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=10"))
                 .timeout(Duration.ofMinutes(2))
-                .header("Content-Type", "application/json")
+                .header("X-MAL-CLIENT-ID", System.getenv("CLIENT_ID_MAL"))
                 .GET()
                 .build();
+        System.out.println("HELLO");
         client.sendAsync(request, BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenAccept(System.out::println);
-        return url;
+        return "url";
     }
 }
