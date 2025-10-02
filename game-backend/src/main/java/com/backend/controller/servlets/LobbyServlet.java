@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 public class LobbyServlet extends HttpServlet {
 
     private String corsHeader = "Access-Control-Allow-Origin";
-    private Logger logger = LoggerFactory.getLogger(PlayerServlet.class);
+    private Logger logger = LoggerFactory.getLogger(LobbyServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
