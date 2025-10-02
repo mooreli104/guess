@@ -627,3 +627,10 @@ Front end stuff :P
 Day 32 1 hour
 
 MORE FRONTEND STUFF --___--
+
+Day 33 1 hour
+
+:: double colons are the Java method reference operator, introduced in Java 8
+It’s shorthand for writing lambdas.
+
+HttpResponse::body = “given an HttpResponse, call its body() method.”
