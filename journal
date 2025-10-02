@@ -634,3 +634,7 @@ Day 33 1 hour
 It’s shorthand for writing lambdas.
 
 HttpResponse::body = “given an HttpResponse, call its body() method.”
+
+Day 34 30 min
+
+Current problem: How do i safely store client id and secrets in a java project? Can use environment variables or System properties
