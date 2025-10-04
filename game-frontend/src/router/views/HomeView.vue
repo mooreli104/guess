@@ -129,12 +129,12 @@ input{
   /* hint for performance */
   pointer-events: none;
   transform-origin: center center;
-
   img {
     width: 10%;
     /* or any size you want */
     height: auto;
     /* keeps aspect ratio */
+
   }
 }
 

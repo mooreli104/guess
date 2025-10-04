@@ -33,7 +33,7 @@ getPlayers()
 </script>
 
 <template>
-    <div class = "fullscreen">
+    <div class = "page">
       <div class = "players">
           <Player v-if= "players" :player = players></Player>
           <Button @click="goToHome">HOME</Button>
@@ -44,17 +44,21 @@ getPlayers()
 
 <style scoped>
 
-.fullscreen {
+
+.page {
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: auto;
-  
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: repeating-linear-gradient(
+    to right,
+    #5B000B 0% 10%,
+    #E7BD8A 10% 20%
+  );
+
 }
 .players{
   display: flex;
@@ -64,6 +68,14 @@ getPlayers()
   height: 25%;
   width: 25%
 }
+</style>
 
-
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 </style>
