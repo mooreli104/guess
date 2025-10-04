@@ -1,6 +1,7 @@
 package com.backend.controller.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,9 @@ public class GameServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MyAnimeListAPI.getInstance().getAnimeImage();
+        String url = MyAnimeListAPI.getInstance().getAnimeImage();
+        PrintWriter writer = resp.getWriter();
+        writer.println(url);
     }
 
     @Override
