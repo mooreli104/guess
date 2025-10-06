@@ -644,3 +644,13 @@ Day 35 1.5 hours
 When I try to return the await response.json() value i get a Promise object, but when I console.log it prints the actual promise result
 
 Any async function in JS returns a promise. So need to use await keyword to unwrap body
+
+Day 36 1 hour
+
+Installing Lama Cleaner for free open source image text remover
+
+Didn't work. Moving onto creating guessing logic
+
+Users can now send a guess to the server.
+
+Next step: Business logic on the guess
