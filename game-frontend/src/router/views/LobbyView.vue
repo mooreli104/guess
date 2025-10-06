@@ -53,12 +53,7 @@ getPlayers()
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background: repeating-linear-gradient(
-    to right,
-    #5B000B 0% 10%,
-    #E7BD8A 10% 20%
-  );
-
+  background-image: linear-gradient(45deg, #E7BD8A 50%, #5B000B 50%);
 }
 .players{
   display: flex;
