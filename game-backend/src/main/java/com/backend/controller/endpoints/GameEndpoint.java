@@ -39,7 +39,8 @@ public class GameEndpoint {
                     createLobby(username, session.getId());
 
                     break;
-                case "joinLobby":
+                case "guess":
+                    System.out.println(message);
 
                     break;
 
