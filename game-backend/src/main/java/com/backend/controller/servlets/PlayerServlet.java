@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 public class PlayerServlet extends HttpServlet {
 
-    private String corsHeader = "Access-Control-Allow-Origin";
     private Logger logger = LoggerFactory.getLogger(PlayerServlet.class);
 
     @Override
@@ -22,19 +21,6 @@ public class PlayerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setHeader(this.corsHeader, req.getHeader("origin"));
-
-    }
-
-    public void sendResponse(HttpServletResponse response, String message) {
-
-        try {
-            PrintWriter writer = response.getWriter();
-            writer.println(message);
-
-        } catch (Exception e) {
-            this.logger.error("Response error", e);
-        }
 
     }
 

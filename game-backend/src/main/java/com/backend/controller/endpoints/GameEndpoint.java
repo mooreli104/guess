@@ -1,5 +1,6 @@
 package com.backend.controller.endpoints;
 
+import java.util.Map;
 import java.util.Set;
 import com.backend.model.Lobby;
 import com.backend.model.Player;
@@ -7,7 +8,6 @@ import com.backend.service.GameService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnMessage;
@@ -49,7 +49,6 @@ public class GameEndpoint {
                     Set<Player> players = lobby.getPlayers();
                     String jsonPlayers = objectMapper.writeValueAsString(players);
                     rep.sendText(jsonPlayers);
-                    // rep.sendObject(lobby.getPlayers());
                     break;
 
                 default:
