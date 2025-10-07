@@ -654,3 +654,11 @@ Didn't work. Moving onto creating guessing logic
 Users can now send a guess to the server.
 
 Next step: Business logic on the guess
+
+Day 37 1 hour
+
+Need "fuzzy string matching" matches words partially but not overdoing it
+
+In memory storage vs persistent storage
+program vs database
+
