@@ -2,12 +2,13 @@ package com.backend.controller.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.ArrayList;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.concurrent.ConcurrentHashMap;
 
+import com.backend.model.Anime;
 import com.backend.service.AnimeService;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -16,18 +17,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class GameServlet extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(PlayerServlet.class);
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, Object> object = AnimeService.getInstance().getAnime();
-        String json = objectMapper.writeValueAsString(object);
 
-        System.out.println(object.keySet());
+        Map<String, Object> object2 = ((Map<String, Object>) ((ArrayList) object.get("data")).get(0));
+        Map<String, Object> object3 = (Map<String, Object>) ((Map<String, Object>) object2.get("node"));
+        String jsonString = objectMapper.writeValueAsString(object3);
+        Anime anime = objectMapper.readValue(jsonString, Anime.class);
 
         PrintWriter writer = resp.getWriter();
-        writer.println(json);
+        writer.println("{\"url\":" + anime.getmain_picture().getLarge() + "}");
     }
 
     @Override
