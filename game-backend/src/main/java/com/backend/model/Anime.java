@@ -1,22 +1,63 @@
 package com.backend.model;
 
 public class Anime {
-    private String url;
-    private String[] correctNames;
 
-    public String[] getCorrectNames() {
-        return correctNames;
+    public class MainPictures {
+        private String medium;
+        private String large;
+
+        public String getLarge() {
+            return large;
+        }
+
+        public void setLarge(String large) {
+            this.large = large;
+        }
+
+        public String getMedium() {
+            return medium;
+        }
+
+        public void setMedium(String medium) {
+            this.medium = medium;
+        }
+
+        @Override
+        public String toString() {
+            return "Large: " + this.large + " " + "Medium: " + medium + "\n";
+        }
     }
 
-    public void setCorrectNames(String[] correctNames) {
-        this.correctNames = correctNames;
+    private String id;
+    private String title;
+    private MainPictures main_picture;
+
+    public String getId() {
+        return id;
     }
 
-    public String getUrl() {
-        return url;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public MainPictures getmain_picture() {
+        return main_picture;
+    }
+
+    public void setmain_picture(MainPictures main_picture) {
+        this.main_picture = main_picture;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + title + " " + main_picture;
     }
 }
