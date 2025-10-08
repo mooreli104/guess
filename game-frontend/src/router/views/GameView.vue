@@ -23,13 +23,15 @@ async function getImage() {
     }
 
     const result = await response.json();
+    console.log(result)
     return result
   } catch (error) {
     console.error(error.message);
   }
 }
 getImage().then((response) => {
-  url.value = (response.data[0]['node']['main_picture']['large']);
+  console.log(response.data);
+  url.value = (response.data["url"]);
 });
 
 async function getPlayers() {
