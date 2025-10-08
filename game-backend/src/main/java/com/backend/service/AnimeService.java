@@ -40,7 +40,7 @@ public class AnimeService {
     public Map<String, Object> getAnime() {
         Map<String, Object> map = new ConcurrentHashMap<>();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=10"))
+                .uri(URI.create("https://api.myanimelist.net/v2/anime/ranking?ranking_type=all&limit=1"))
                 .timeout(Duration.ofMinutes(2))
                 .header("X-MAL-CLIENT-ID", "d2dd83dfa266b694097f5a0365955ff8")
                 .GET()
