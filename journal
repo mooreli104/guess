@@ -662,3 +662,10 @@ Need "fuzzy string matching" matches words partially but not overdoing it
 In memory storage vs persistent storage
 program vs database
 
+Day 38 1 hour
+
+Jackson needs a class to have getters and setters to map json string into java object
+
+Day summary: Matched json string into Anime object
+
+Still need to implement guess logic
