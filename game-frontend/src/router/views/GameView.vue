@@ -9,7 +9,7 @@ import { Button } from 'primevue';
 
 const router = useRouter() // Uses router from main.js to push Lobby page
 const socket = useSocket()
-var url = ref()
+var anime = ref()
 var players = ref()
 var playerGuess = ref()
 
@@ -23,15 +23,13 @@ async function getImage() {
     }
 
     const result = await response.json();
-    console.log(result)
     return result
   } catch (error) {
     console.error(error.message);
   }
 }
 getImage().then((response) => {
-  console.log(response.data);
-  url.value = (response.data["url"]);
+  anime.value = (response.url);
 });
 
 async function getPlayers() {
@@ -59,7 +57,7 @@ async function guess() {
       <Player v-if="players" :player=players></Player>
     </div>
     <div class = "guess">
-    <img :src="url"></img>
+    <img :src="anime"></img>
       <div class='input'>
     <input type="text" v-model="playerGuess" placeholder="Guess">
     <Button type="submit" value="Guess" @click.prevent="guess" label="normal" raised rounded style="top: 1%">Guess</Button>
