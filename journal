@@ -669,3 +669,7 @@ Jackson needs a class to have getters and setters to map json string into java o
 Day summary: Matched json string into Anime object
 
 Still need to implement guess logic
+
+Day 39 45 minutes
+
+Possibly need to send cookies on WS connection or else HTTP request wont have session managemnet
