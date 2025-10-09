@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import com.backend.model.Anime;
 import com.backend.service.AnimeService;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -29,7 +27,7 @@ public class GameServlet extends HttpServlet {
         Anime anime = objectMapper.readValue(jsonString, Anime.class);
 
         PrintWriter writer = resp.getWriter();
-        writer.println("{\"url\":" + anime.getmain_picture().getLarge() + "}");
+        writer.println("{\"url\":\"" + anime.getmain_picture().getLarge() + "\"}");
     }
 
     @Override
