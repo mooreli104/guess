@@ -3,9 +3,7 @@ package com.backend.model;
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "Lobby")
@@ -20,6 +19,9 @@ public class Lobby {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID lobbyID;
+
+    @Transient
+    private Anime anime;
 
     @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "lobby", orphanRemoval = true)
@@ -42,6 +44,14 @@ public class Lobby {
 
     public void removePlayer(Player player) {
         this.players.remove(player);
+    }
+
+    public void setAnime(Anime anime) {
+        this.anime = anime;
+    }
+
+    public Anime getAnime() {
+        return anime;
     }
 
     @Override
