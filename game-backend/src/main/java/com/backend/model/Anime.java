@@ -1,5 +1,8 @@
 package com.backend.model;
 
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+
 public class Anime {
 
     public class MainPictures {

@@ -13,9 +13,8 @@ var anime = ref()
 var players = ref()
 var playerGuess = ref()
 
-
 async function getImage() {
-  const url = "http://localhost:8080/game";
+  const url = `http://localhost:8080/game?${players.value[0]["lobby"]["id"]}`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -28,18 +27,7 @@ async function getImage() {
     console.error(error.message);
   }
 }
-getImage().then((response) => {
-  anime.value = (response.url);
-});
 
-async function getPlayers() {
-  socket.socket.send(JSON.stringify({ "action": "getLobby" }));
-}
-socket.socket.addEventListener("message", (event) => {
-  players.value = JSON.parse(event.data)
-});
-
-getPlayers()
 
 async function guess() {
   socket.socket.send(JSON.stringify({
@@ -47,6 +35,21 @@ async function guess() {
     "action": "guess"
   }));
 }
+
+
+async function getPlayers() {
+  socket.socket.send(JSON.stringify({ "action": "getLobby" }));
+}
+getPlayers()
+
+socket.socket.addEventListener("message", (event) => {
+  players.value = JSON.parse(event.data)
+  getImage().then((response) => {
+  anime.value = (response.url);
+});
+
+});
+
 
 </script>
 
