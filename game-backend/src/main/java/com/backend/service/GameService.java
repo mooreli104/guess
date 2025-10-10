@@ -1,6 +1,7 @@
 package com.backend.service;
 
 import java.util.Set;
+import java.util.UUID;
 
 import com.backend.model.Lobby;
 import com.backend.model.Player;
@@ -50,8 +51,14 @@ public class GameService {
     }
 
     public Lobby getLobby(String session) {
+        System.out.println("heloo");
         Player player = this.playerDao.findById(session);
         Lobby lobby = ((PlayerDao) this.playerDao).getLobby(player.getId());
+        return lobby;
+    }
+
+    public Lobby getLobby(UUID id) {
+        Lobby lobby = LobbyDao.getInstance().findById(id);
         return lobby;
     }
 
