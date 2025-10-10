@@ -8,8 +8,6 @@ import org.eclipse.jetty.server.handler.CrossOriginHandler;
 
 import com.backend.controller.endpoints.GameEndpoint;
 import com.backend.controller.servlets.GameServlet;
-import com.backend.controller.servlets.LobbyServlet;
-import com.backend.controller.servlets.PlayerServlet;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,8 +16,6 @@ public class Main {
             Server server = new Server(8080);
 
             ServletContextHandler socketHandler = new ServletContextHandler("/");
-            socketHandler.addServlet(PlayerServlet.class, "/players/*");
-            socketHandler.addServlet(LobbyServlet.class, "/lobby/*");
             socketHandler.addServlet(GameServlet.class, "/game/*");
 
             // Ensure that JavaxWebSocketServletContainerInitializer is initialized,
