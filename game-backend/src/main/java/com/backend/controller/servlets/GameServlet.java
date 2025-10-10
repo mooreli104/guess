@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.backend.model.Anime;
+import com.backend.model.Lobby;
 import com.backend.service.AnimeService;
+import com.backend.service.GameService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 public class GameServlet extends HttpServlet {
     private ObjectMapper objectMapper = new ObjectMapper();
@@ -25,7 +28,10 @@ public class GameServlet extends HttpServlet {
         Map<String, Object> object3 = (Map<String, Object>) ((Map<String, Object>) object2.get("node"));
         String jsonString = objectMapper.writeValueAsString(object3);
         Anime anime = objectMapper.readValue(jsonString, Anime.class);
-
+        // session managmenet
+        Lobby lobby = GameService.getInstance().getLobby(UUID.fromString(req.getQueryString()));
+        lobby.setAnime(anime);
+        System.out.println(lobby.getAnime());
         PrintWriter writer = resp.getWriter();
         writer.println("{\"url\":\"" + anime.getmain_picture().getLarge() + "\"}");
     }
