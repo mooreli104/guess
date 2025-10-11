@@ -26,26 +26,27 @@ public class GameEndpoint {
     @OnMessage
     public void onWebSocketText(Session session, String message) {
         try {
-
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonRootNode = objectMapper.readTree(message);
             String action = jsonRootNode.get("action").asText();
             RemoteEndpoint.Async rep = session.getAsyncRemote();
-
+            Lobby lobby;
             switch (action) {
                 case "createLobby":
                     String username = jsonRootNode.get("username").asText();
                     createLobby(username, session.getId());
-
                     break;
                 case "guess":
-                    System.out.println(message);
-
+                    Player player = GameService.getInstance().getPlayer(session.getId());
+                    lobby = GameService.getInstance().getLobby(session.getId());
+                    String guess = jsonRootNode.get("guess").asText();
+                    player.setGuess(guess);
+                    System.out.println(lobby.getAnime());
+                    GameService.getInstance().checkGuess(player, lobby);
                     break;
-
                 case "getLobby":
-                    Lobby lobby = getLobby(session);
-                    Set<Player> players = lobby.getPlayers();
+                    lobby = GameService.getInstance().getLobby(session.getId());
+                    Set<Player> players = GameService.getInstance().getPlayers(lobby);
                     String jsonPlayers = objectMapper.writeValueAsString(players);
                     rep.sendText(jsonPlayers);
                     break;
@@ -62,7 +63,7 @@ public class GameEndpoint {
     public void onWebSocketClose(Session session, CloseReason reason) {
         String id = session.getId();
         System.out.println(id + " disconnected");
-        leaveLobby(id);
+        GameService.getInstance().leaveLobby(session.getId());
     }
 
     public void createLobby(String playerName, String session) {
@@ -72,18 +73,4 @@ public class GameEndpoint {
         game.createLobby(newLobby, newPlayer);
 
     }
-
-    public Lobby getLobby(Session session) {
-        return GameService.getInstance().getLobby(session.getId());
-    }
-
-    public void leaveLobby(String session) {
-        GameService.getInstance().leaveLobby(session);
-    }
-
-    public Set<Player> getPlayers(String session) {
-        Set<Player> players = GameService.getInstance().fetchPlayers(session);
-        return players;
-    }
-
 }
