@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "Player")
@@ -26,6 +27,7 @@ public class Player {
     @NaturalId
     private String session;
     private int score;
+    @Transient
     private String guess;
 
     @JsonManagedReference
@@ -43,7 +45,7 @@ public class Player {
         this.session = session;
     }
 
-    public void guess(String guess) {
+    public void setGuess(String guess) {
         this.guess = guess;
     }
 

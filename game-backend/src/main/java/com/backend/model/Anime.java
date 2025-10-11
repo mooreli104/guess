@@ -1,8 +1,5 @@
 package com.backend.model;
 
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-
 public class Anime {
 
     public class MainPictures {
@@ -44,7 +41,7 @@ public class Anime {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
