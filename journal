@@ -673,3 +673,30 @@ Still need to implement guess logic
 Day 39 45 minutes
 
 Possibly need to send cookies on WS connection or else HTTP request wont have session managemnet
+
+Day 40 1 hour
+
+@Transient on attributes for Hibernate to ignore
+
+Fuzzy string matching:
+
+2 problems
+1. finding approximate substring matches inside a given string
+2. finding dictionary strings that match the pattern approximately.
+
+I dont seem to need a database... good for learning though
+
+Confused on whether or not I need a database. Do I need persistent data?
+
+Gemini's answer:
+
+The Verdict for Your Game
+Given your model (no login, deleting lobbies):
+
+Do you need to store Player ID/Score for a single user across multiple sessions? NO. (You are correct here.)
+
+Do you need a database for core game content (anime list)? YES.
+
+Do you need a database for cross-lobby safety/moderation? YES.
+
+In short, you don't need a database for the individual player's progress, but you still absolutely need it for the integrity and content of the game itself.
