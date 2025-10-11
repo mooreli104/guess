@@ -45,13 +45,21 @@ public class GameService {
         }
     }
 
-    public Set<Player> fetchPlayers(String session) {
+    public Set<Player> getPlayers(String session) {
         Set<Player> players = ((PlayerDao) this.playerDao).getPlayers(session);
         return players;
     }
 
+    public Set<Player> getPlayers(Lobby lobby) {
+        Set<Player> players = ((LobbyDao) this.lobbyDao).getPlayers(lobby.getId());
+        return players;
+    }
+
+    public Player getPlayer(String session) {
+        return ((PlayerDao) this.playerDao).findById(session);
+    }
+
     public Lobby getLobby(String session) {
-        System.out.println("heloo");
         Player player = this.playerDao.findById(session);
         Lobby lobby = ((PlayerDao) this.playerDao).getLobby(player.getId());
         return lobby;
@@ -62,7 +70,8 @@ public class GameService {
         return lobby;
     }
 
-    public Set<Player> getPlayers(Lobby lobby) {
-        return ((LobbyDao) this.lobbyDao).getPlayers(lobby.getId());
+    public void checkGuess(Player player, Lobby lobby) {
+        System.out.println("check");
+        // System.out.println(player.getGuess() + " " + lobby.getAnime().getTitle());
     }
 }
