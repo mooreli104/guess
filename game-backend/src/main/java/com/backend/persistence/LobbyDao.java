@@ -3,6 +3,7 @@ package com.backend.persistence;
 import java.util.Set;
 import java.util.UUID;
 
+import com.backend.model.Anime;
 import com.backend.model.Lobby;
 import com.backend.model.Player;
 import com.backend.util.HibernateUtil;
@@ -69,4 +70,7 @@ public class LobbyDao implements BaseDao<Lobby> {
         return lobby.getPlayers();
     }
 
+    public void setAnime(Anime anime) {
+
+    }
 }
