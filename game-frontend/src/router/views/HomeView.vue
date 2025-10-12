@@ -34,7 +34,7 @@ async function createLobby() {
       <input type="text" v-model="username" placeholder="Enter a nickname!">
       <Button v-if="username" type="submit" value="Start" @click.prevent="goToLobby" label="normal" raised rounded
         style="top: 1%">Start</Button>
-      <Button v-else label="normal" severity="secondary" raised rounded>Start</Button>
+      <Button v-else label="normal" severity="secondary" raised rounded style="pointer-events: none;">Start</Button>
     </div>
     <br>
   </div>

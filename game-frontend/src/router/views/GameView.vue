@@ -63,7 +63,10 @@ socket.socket.addEventListener("message", (event) => {
     <img :src="anime"></img>
       <div class='input'>
     <input type="text" v-model="playerGuess" placeholder="Guess">
-    <Button type="submit" value="Guess" @click.prevent="guess" label="normal" raised rounded style="top: 1%">Guess</Button>
+    <Button v-if = "playerGuess" type="submit" value="Guess" @click.prevent="guess" label="normal" raised rounded style="top: 1%">Guess</Button>
+    <Button v-else label = "normal" severity="secondary" raised rounded style="pointer-events: none;">Guess</Button>
+
+
       </div>
       </div>
   </div>
