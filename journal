@@ -700,3 +700,9 @@ Do you need a database for core game content (anime list)? YES.
 Do you need a database for cross-lobby safety/moderation? YES.
 
 In short, you don't need a database for the individual player's progress, but you still absolutely need it for the integrity and content of the game itself.
+
+Day 41 1 hour
+
+Creating new git branch to create game w/o a database
+
+Need to create tests
