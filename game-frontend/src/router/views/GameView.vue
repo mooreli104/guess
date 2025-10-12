@@ -38,7 +38,7 @@ async function guess() {
 
 
 async function getPlayers() {
-  socket.socket.send(JSON.stringify({ "action": "getLobby" }));
+  socket.socket.send(JSON.stringify({ "action": "getPlayers" }));
 }
 getPlayers()
 

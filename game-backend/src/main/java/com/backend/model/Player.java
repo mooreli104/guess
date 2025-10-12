@@ -1,72 +1,44 @@
 package com.backend.model;
 
 import java.util.UUID;
-
-import org.hibernate.annotations.NaturalId;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-
-@Entity
-@Table(name = "Player")
 public class Player {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    public enum Role {
+        HOST,
+        PLAYER;
+    }
+
     private UUID uuid;
     private String username;
-    @NaturalId
-    private String session;
     private int score;
-    @Transient
     private String guess;
+    private Role role;
 
     @JsonManagedReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lobbyID", referencedColumnName = "lobbyID")
     private Lobby lobby;
 
     public Player() {
     }
 
-    public Player(String username, String session) {
+    public Player(String username, String websocketSession) {
         this.username = username;
         this.score = 0;
         this.guess = null;
-        this.session = session;
+        this.uuid = UUID.fromString(websocketSession);
     }
 
     public void setGuess(String guess) {
         this.guess = guess;
     }
 
-    public void joinLobby(Lobby lobby) {
-        this.lobby = lobby;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
     public String getGuess() {
         return this.guess;
     }
 
-    public int getScore() {
-        return this.score;
-    }
-
-    public UUID getId() {
-        return this.uuid;
+    public void joinLobby(Lobby lobby) {
+        this.lobby = lobby;
     }
 
     public void leaveLobby() {
@@ -77,9 +49,29 @@ public class Player {
         return this.lobby;
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public UUID getId() {
+        return this.uuid;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return this.username + " " + this.session;
+        return this.username + " " + this.uuid + this.lobby;
     }
 
     @Override

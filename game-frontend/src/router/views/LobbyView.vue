@@ -21,7 +21,7 @@ const startGame = () => {
 
 
 async function getPlayers() {
-    socket.socket.send(JSON.stringify({"action": "getLobby"}));
+    socket.socket.send(JSON.stringify({"action": "getPlayers"}));
 }
 
 socket.socket.addEventListener("message", (event) => {

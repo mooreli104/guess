@@ -31,24 +31,33 @@ public class GameEndpoint {
             String action = jsonRootNode.get("action").asText();
             RemoteEndpoint.Async rep = session.getAsyncRemote();
             Lobby lobby;
+            Player player;
             switch (action) {
                 case "createLobby":
                     String username = jsonRootNode.get("username").asText();
-                    createLobby(username, session.getId());
+                    player = new Player(username, session.getId());
+                    player.setRole(Player.Role.HOST);
+                    GameService.getInstance().createLobby(player);
+
                     break;
                 case "guess":
-                    Player player = GameService.getInstance().getPlayer(session.getId());
-                    lobby = GameService.getInstance().getLobby(session.getId());
+                    player = GameService.getInstance().getPlayer(session.getId());
+                    lobby = player.getLobby();
                     String guess = jsonRootNode.get("guess").asText();
                     player.setGuess(guess);
                     System.out.println(lobby.getAnime());
                     GameService.getInstance().checkGuess(player, lobby);
                     break;
-                case "getLobby":
-                    lobby = GameService.getInstance().getLobby(session.getId());
-                    Set<Player> players = GameService.getInstance().getPlayers(lobby);
-                    String jsonPlayers = objectMapper.writeValueAsString(players);
-                    rep.sendText(jsonPlayers);
+                case "getPlayers":
+                    try {
+                        lobby = GameService.getInstance().getPlayer(session.getId()).getLobby();
+                        Set<Player> players = lobby.getPlayers();
+                        String jsonPlayers = objectMapper.writeValueAsString(players);
+                        rep.sendText(jsonPlayers);
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+
                     break;
 
                 default:
@@ -61,16 +70,8 @@ public class GameEndpoint {
 
     @OnClose
     public void onWebSocketClose(Session session, CloseReason reason) {
-        String id = session.getId();
-        System.out.println(id + " disconnected");
-        GameService.getInstance().leaveLobby(session.getId());
-    }
-
-    public void createLobby(String playerName, String session) {
-        Player newPlayer = new Player(playerName, session);
-        Lobby newLobby = new Lobby();
-        GameService game = GameService.getInstance();
-        game.createLobby(newLobby, newPlayer);
-
+        String playerID = session.getId();
+        System.out.println(playerID + " disconnected");
+        GameService.getInstance().leaveLobby(playerID);
     }
 }
