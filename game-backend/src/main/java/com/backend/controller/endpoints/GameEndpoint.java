@@ -45,8 +45,7 @@ public class GameEndpoint {
                     lobby = player.getLobby();
                     String guess = jsonRootNode.get("guess").asText();
                     player.setGuess(guess);
-                    System.out.println(lobby.getAnime());
-                    GameService.getInstance().checkGuess(player, lobby);
+                    GameService.getInstance().checkGuess(player);
                     break;
                 case "getPlayers":
                     try {

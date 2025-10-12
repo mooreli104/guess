@@ -54,8 +54,8 @@ public class GameService {
         return GameService.players.get(UUID.fromString(playerID));
     }
 
-    public void checkGuess(Player player, Lobby lobby) {
-        System.out.println("check");
-        // System.out.println(player.getGuess() + " " + lobby.getAnime().getTitle());
+    public void checkGuess(Player player) {
+        Lobby lobby = player.getLobby();
+        System.out.println(lobby.getAnime().getTitle() + " " + player.getGuess());
     }
 }
