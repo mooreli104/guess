@@ -706,3 +706,11 @@ Day 41 1 hour
 Creating new git branch to create game w/o a database
 
 Need to create tests
+
+Day 42
+
+Need to broadcast all lobby changes to each user
+
+Day 43 1 hour
+
+Frontend should not need to request data changes
